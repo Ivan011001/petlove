@@ -10,10 +10,7 @@ const Logo = ({ filled }: ILogoProps) => {
   return (
     <Link
       href="/"
-      className={cn(
-        "justify-center items-center inline-flex px-[14px] py-[9px]",
-        filled && "bg-amber-400"
-      )}
+      className={cn("justify-center items-center inline-flex", filled && "bg-amber-400")}
     >
       <p
         className={cn(
