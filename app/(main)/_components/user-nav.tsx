@@ -12,14 +12,14 @@ const UserNav = () => {
 
       <Link
         className=" hover:border-amber-400 transition-all duration-300 px-5 py-[15px] rounded-[30px] border border-neutral-800 border-opacity-20 justify-center items-center gap-2.5 inline-flex"
-        href="/news"
+        href="/findpet"
       >
         <p className="text-neutral-800 text-base font-medium leading-tight">Find Pet</p>
       </Link>
 
       <Link
         className="hover:border-amber-400 transition-all duration-300 px-5 py-[15px] rounded-[30px] border border-neutral-800 border-opacity-20 justify-center items-center gap-2.5 inline-flex"
-        href="/news"
+        href="/friends"
       >
         <p className="text-neutral-800 text-base font-medium leading-tight">
           Our Friends
