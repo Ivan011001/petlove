@@ -1,5 +1,8 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
+<symbol id="icon-logo" viewBox="0 0 31 28">
+<path d="M15.636 4.010c-3.030-3.577-8.082-4.539-11.878-1.264s-4.33 8.752-1.349 12.626c1.909 2.481 6.799 7.083 10.068 10.070 1.086 0.993 1.629 1.489 2.28 1.688 0.559 0.171 1.198 0.171 1.758 0 0.651-0.199 1.194-0.696 2.28-1.688 3.269-2.988 8.159-7.589 10.068-10.070 2.981-3.874 2.512-9.385-1.349-12.626s-8.848-2.313-11.878 1.264z"></path>
+</symbol>
 <symbol id="icon-cross" viewBox="0 0 28 28">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5455" d="M22.166 5.833l-16.333 16.333M5.833 5.833l16.333 16.333"></path>
 </symbol>
