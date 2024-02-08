@@ -65,15 +65,14 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute right-9 top-6 md:top-8 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <button className="group">
-          <svg className="w-8 h-8 md:w-9 md:h-9 stroke-black">
-            <use
-              className="group-hover:stroke-amber-400 transition-all duration-300"
-              xlinkHref="/sprite.svg#icon-cross"
-            ></use>
-          </svg>
-        </button>
+      <SheetPrimitive.Close className="group absolute right-9 top-6 md:top-8 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <svg className="w-8 h-8 md:w-9 md:h-9 stroke-black">
+          <use
+            className="group-hover:stroke-amber-400 transition-all duration-300"
+            xlinkHref="/sprite.svg#icon-cross"
+          ></use>
+        </svg>
+
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
