@@ -6,17 +6,28 @@ import UserNav from "./user-nav";
 import UserMenu from "./user-menu";
 import UserAuth from "./user-auth";
 
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-const Header = () => {
+import { cn } from "@/lib/utils";
+
+interface IHeaderProps {
+  light?: boolean;
+}
+
+const Header = ({ light }: IHeaderProps) => {
   return (
-    <header className="container flex justify-between items-center py-[24px] md:py-[32px]">
-      <Logo />
+    <header
+      className={cn(
+        "flex justify-between items-center py-[24px] md:py-[32px]",
+        !light && "container"
+      )}
+    >
+      <Logo filled={light} />
 
       <div className="flex items-center gap-[16px] lg:flex-row-reverse">
         <div className="flex items-center gap-[16px]">
           <div className="lg:hidden">
-            <UserMenu />
+            <UserMenu light={light} />
           </div>
           <div className="hidden lg:block">
             <UserAuth />
@@ -25,7 +36,12 @@ const Header = () => {
           <Sheet onOpenChange={() => console.log(1)}>
             <SheetTrigger asChild>
               <button>
-                <svg className="w-8 h-8 md:w-9 md:h-9 stroke-black lg:hidden">
+                <svg
+                  className={cn(
+                    "w-8 h-8 md:w-9 md:h-9 stroke-black lg:hidden",
+                    light && "stroke-white"
+                  )}
+                >
                   <use xlinkHref="/sprite.svg#icon-menu"></use>
                 </svg>
               </button>
@@ -43,7 +59,7 @@ const Header = () => {
         </div>
 
         <div className="hidden lg:block">
-          <UserNav />
+          <UserNav light={light} />
         </div>
       </div>
     </header>
