@@ -25,7 +25,7 @@ const Header = ({ light }: IHeaderProps) => {
       <Logo light={light} />
 
       <div className="flex items-center gap-[16px] lg:flex-row-reverse">
-        <div className="flex items-center gap-[16px]">
+        <div className="flex items-center gap-[16px] lg:gap-0">
           <div className="lg:hidden">
             <UserNav light={light} />
           </div>

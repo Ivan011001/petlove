@@ -1,43 +1,59 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
+import Header from "./_components/header";
+
 import Image from "next/image";
 
 const NotFound = () => {
-  return (
-    <main className="flex justify-center container">
-      <div className="w-full px-72 py-28 bg-amber-400 rounded-3xl justify-center items-center inline-flex">
-        <div className="self-stretch flex-col justify-start items-center gap-10 inline-flex">
-          <div className="justify-center items-center inline-flex">
-            <p className="text-white text-[300px] font-extrabold leading-10">4</p>
-            <div className="w-72 h-72 bg-white bg-opacity-10 rounded-full justify-end items-center flex">
-              <Image
-                className="w-72 h-72 rounded-full"
-                src="/not-found.png"
-                alt="Sad cat"
-                width={72}
-                height={72}
-                priority
-              />
-            </div>
-            <p className="text-white text-[300px] font-extrabold leading-10">4</p>
-          </div>
-          <div className="flex-col justify-start items-center gap-5 flex">
-            <p className="text-white text-2xl font-bold leading-7">
-              Ooops! This page not found :(
-            </p>
+  const router = useRouter();
 
-            <Link
-              href="/"
-              className="px-7 py-3.5 bg-yellow-50 rounded-3xl justify-center items-center gap-2.5 inline-flex"
-            >
-              <p className="text-amber-400 text-base font-bold leading-tight">
-                To home page
+  const onHandleRedirect = () => {
+    router.replace("/");
+  };
+
+  return (
+    <>
+      <Header />
+      <main className="flex container pb-5">
+        <div className="container bg-accent rounded-3xl flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-start items-center gap-5 ">
+            <div className="flex justify-center items-center gap-2">
+              <div className="text-white text-9xl md:text-[300px] font-extrabold leading-10">
+                4
+              </div>
+              <div className="flex bg-white bg-opacity-10 rounded-full justify-end items-center">
+                <Image
+                  className="h-25 w-25 md:h-72 md:w-72"
+                  src="/not-found.png"
+                  alt="Not Found"
+                  width={100}
+                  height={100}
+                />
+              </div>
+              <div className="text-white text-9xl md:text-[300px] font-extrabold leading-10">
+                4
+              </div>
+            </div>
+            <div className="flex-col justify-start items-center gap-5 flex">
+              <p className="text-white text-base md:text-2xl font-bold leading-tight md:leading-7">
+                Ooops! This page not found :(
               </p>
-            </Link>
+              <Button
+                className="md:px-7 md:py-3.5"
+                variant="outline"
+                onClick={onHandleRedirect}
+              >
+                To home page
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 
