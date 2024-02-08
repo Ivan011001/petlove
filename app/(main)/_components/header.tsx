@@ -4,19 +4,9 @@ import Logo from "@/components/logo";
 
 import UserNav from "./user-nav";
 import UserMenu from "./user-menu";
+import UserAuth from "./user-auth";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
-import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 const Header = () => {
   return (
@@ -25,11 +15,14 @@ const Header = () => {
 
       <div className="flex items-center gap-[16px] lg:flex-row-reverse">
         <div className="flex items-center gap-[16px]">
-          <div className="hidden md:block">
+          <div className="lg:hidden">
             <UserMenu />
           </div>
+          <div className="hidden lg:block">
+            <UserAuth />
+          </div>
 
-          <Sheet>
+          <Sheet onOpenChange={() => console.log(1)}>
             <SheetTrigger asChild>
               <button>
                 <svg className="w-8 h-8 md:w-9 md:h-9 stroke-black lg:hidden">
@@ -38,14 +31,13 @@ const Header = () => {
               </button>
             </SheetTrigger>
             <SheetContent>
-              <SheetHeader>
-                <SheetTitle></SheetTitle>
-                <SheetDescription></SheetDescription>
-              </SheetHeader>
+              <div className="h-full flex flex-col justify-between">
+                <div className="flex flex-grow justify-center items-center">
+                  <UserNav />
+                </div>
 
-              <SheetFooter>
-                <SheetClose asChild></SheetClose>
-              </SheetFooter>
+                <UserAuth />
+              </div>
             </SheetContent>
           </Sheet>
         </div>
