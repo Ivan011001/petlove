@@ -15,7 +15,7 @@ const AuthNav = () => {
     <nav className="flex flex-col md:flex-row md:w-full justify-center md:justify-between gap-2">
       <Button
         variant="default"
-        className="uppercase py-5 md:w-full lg:px-9"
+        className="uppercase py-4 md:w-full lg:px-9 lg:py-3.5"
         onClick={() => onHandleRedirect("/login")}
       >
         Log In
@@ -23,7 +23,7 @@ const AuthNav = () => {
 
       <Button
         variant="outline"
-        className="uppercase py-5 md:w-full lg:px-5"
+        className="uppercase py-4 md:w-full lg:px-5 lg:py-3.5"
         onClick={() => onHandleRedirect("/register")}
       >
         Registration
