@@ -1,25 +1,33 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
 
 const AuthNav = () => {
+  const router = useRouter();
+
+  const onHandleRedirect = (link: string) => {
+    router.push(link);
+  };
+
   return (
     <nav className="flex flex-col md:flex-row justify-center gap-2">
-      <Link
-        href="/login"
-        className="group hover:bg-yellow-50 transition-all duration-300 px-9 py-3.5 bg-amber-400 rounded-3xl justify-center items-center gap-2.5 inline-flex"
+      <Button
+        variant="default"
+        className="uppercase lg:px-9"
+        onClick={() => onHandleRedirect("/login")}
       >
-        <p className="group-hover:text-amber-400 transition-all duration-300 text-white text-sm md:text-base font-bold uppercase leading-none md:leading-tight">
-          Log In
-        </p>
-      </Link>
+        Log In
+      </Button>
 
-      <Link
-        href="/register"
-        className="group px-5 py-3.5 bg-yellow-50 rounded-3xl justify-center items-center gap-2.5 inline-flex transition-all duration-300 hover:bg-amber-400"
+      <Button
+        variant="outline"
+        className="uppercase lg:px-5"
+        onClick={() => onHandleRedirect("/register")}
       >
-        <p className="transition-all duration-300 group-hover:text-white text-amber-400 text-base font-bold uppercase leading-tight">
-          Registration
-        </p>
-      </Link>
+        Registration
+      </Button>
     </nav>
   );
 };
