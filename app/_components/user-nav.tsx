@@ -2,11 +2,11 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-interface IUserMenuProps {
+interface IUserNavProps {
   light?: boolean;
 }
 
-const UserMenu = ({ light }: IUserMenuProps) => {
+const UserNav = ({ light }: IUserNavProps) => {
   return (
     <div className="flex gap-2 items-center">
       <Link
@@ -30,4 +30,4 @@ const UserMenu = ({ light }: IUserMenuProps) => {
   );
 };
 
-export default UserMenu;
+export default UserNav;

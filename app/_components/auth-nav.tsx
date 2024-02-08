@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const UserAuth = () => {
+const AuthNav = () => {
   return (
     <nav className="flex flex-col md:flex-row justify-center gap-2">
       <Link
@@ -24,10 +24,4 @@ const UserAuth = () => {
   );
 };
 
-export default UserAuth;
-
-<div className="px-16 py-3 bg-amber-400 rounded-3xl justify-center items-center gap-2.5 inline-flex">
-  <div className="text-white text-sm font-bold font-['Manrope'] uppercase leading-none">
-    Log In
-  </div>
-</div>;
+export default AuthNav;

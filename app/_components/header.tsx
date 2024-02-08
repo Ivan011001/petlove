@@ -2,9 +2,9 @@
 
 import Logo from "@/components/logo";
 
+import Nav from "./nav";
 import UserNav from "./user-nav";
-import UserMenu from "./user-menu";
-import UserAuth from "./user-auth";
+import AuthNav from "./auth-nav";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -22,15 +22,15 @@ const Header = ({ light }: IHeaderProps) => {
         !light && "container"
       )}
     >
-      <Logo filled={light} />
+      <Logo light={light} />
 
       <div className="flex items-center gap-[16px] lg:flex-row-reverse">
         <div className="flex items-center gap-[16px]">
           <div className="lg:hidden">
-            <UserMenu light={light} />
+            <UserNav light={light} />
           </div>
           <div className="hidden lg:block">
-            <UserAuth />
+            <AuthNav />
           </div>
 
           <Sheet onOpenChange={() => console.log(1)}>
@@ -49,17 +49,17 @@ const Header = ({ light }: IHeaderProps) => {
             <SheetContent>
               <div className="h-full flex flex-col justify-between">
                 <div className="flex flex-grow justify-center items-center">
-                  <UserNav />
+                  <Nav />
                 </div>
 
-                <UserAuth />
+                <AuthNav />
               </div>
             </SheetContent>
           </Sheet>
         </div>
 
         <div className="hidden lg:block">
-          <UserNav light={light} />
+          <Nav light={light} />
         </div>
       </div>
     </header>

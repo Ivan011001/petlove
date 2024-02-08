@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-interface IUserNavProps {
+interface INavProps {
   light?: boolean;
 }
 
@@ -16,7 +16,7 @@ const navList = [
   { title: "Our Friends", link: "/friends" },
 ];
 
-const UserNav = ({ light }: IUserNavProps) => {
+const Nav = ({ light }: INavProps) => {
   const path = usePathname();
 
   return (
@@ -47,4 +47,4 @@ const UserNav = ({ light }: IUserNavProps) => {
   );
 };
 
-export default UserNav;
+export default Nav;
