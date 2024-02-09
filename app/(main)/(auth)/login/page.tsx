@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import LoginForm from "./_components/login-form";
 
 const LoginPage = () => {
   return (
@@ -14,13 +15,9 @@ const LoginPage = () => {
             Welcome! Please enter your credentials to login to the platform:
           </p>
 
-          <form className="flex flex-col gap-10 lg:gap-[64px] mb-3 md:mb-4">
-            <div className="flex flex-col gap-2.5">
-              <input className="bg-red-200 py-3 " type="text" name="" id="" />
-              <input className="bg-red-200 py-3 " type="text" name="" id="" />
-            </div>
-            <Button className="uppercase py-3">Log In</Button>
-          </form>
+          <div className="mb-3 md:mb-4">
+            <LoginForm />
+          </div>
 
           <p className="text-center text-neutral-800 text-opacity-50 text-xs md:text-sm font-medium leading-none md:leading-tight">
             Don&apos;t have an account?{" "}
