@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RegistrationForm from "../../../_components/registration-form";
+import RegistrationForm from "./_components/registration-form";
 
 const RegisterPage = () => {
   return (
@@ -45,8 +45,8 @@ const RegisterPage = () => {
                       </div>
                     </div>
                     <p className="mt-2 text-xs font-medium tracking-tight leading-4 text-neutral-800 text-opacity-80">
-                      Jack is a gray Persian cat with green eyes. He loves to be
-                      pampered and groomed, and enjoys playing with toys.
+                      Jack is a gray Persian cat with green eyes. He loves to be pampered
+                      and groomed, and enjoys playing with toys.
                     </p>
                   </div>
                 </div>

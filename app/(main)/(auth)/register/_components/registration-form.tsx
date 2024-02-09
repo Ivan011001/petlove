@@ -1,10 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+
 import { Field, Form, Formik } from "formik";
+
 import Link from "next/link";
-import { registrationSchema } from "../utils/validationFormSchemas";
+import { Button } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
+
+import { registrationSchema } from "@/utils/validationFormSchemas";
 
 interface IRegistratiomFormValues {
   name: string;
@@ -14,11 +19,24 @@ interface IRegistratiomFormValues {
 }
 
 const RegistrationForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const initialValues: IRegistratiomFormValues = {
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
+  };
+
+  const onShowPasswordChange = (event: React.MouseEvent<HTMLElement>) => {
+    event.currentTarget.blur();
+    setShowPassword((prev) => !prev);
+  };
+
+  const onShowConfirmPasswordChange = (event: React.MouseEvent<HTMLElement>) => {
+    event.currentTarget.blur();
+    setShowConfirmPassword((prev) => !prev);
   };
 
   return (
@@ -71,50 +89,78 @@ const RegistrationForm = () => {
                   {errors.email}
                 </p>
               ) : null}
-              <Field
-                className={cn(
-                  "w-full py-3 px-3 lg:py-4 mt-2 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent bg-white text-[rgba(38,38,38,0.8)] leading-[18px] font-medium text-[14px] md:text-4 placeholder:text-sm md:placeholder:text-base",
-                  touched.password
-                    ? errors.password
-                      ? "border-red-500 border-opacity-100"
-                      : "border-green-500 border-opacity-100"
-                    : ""
-                )}
-                placeholder="Password"
-                name="password"
-              />
+
+              <div className="relative">
+                <Field
+                  className={cn(
+                    "w-full py-3 px-3 lg:py-4 mt-2 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent bg-white text-[rgba(38,38,38,0.8)] leading-[18px] font-medium text-[14px] md:text-4 placeholder:text-sm md:placeholder:text-base",
+                    touched.password
+                      ? errors.password
+                        ? "border-red-500 border-opacity-100"
+                        : "border-green-500 border-opacity-100"
+                      : ""
+                  )}
+                  placeholder="Password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                />
+
+                <button
+                  type="button"
+                  onClick={onShowPasswordChange}
+                  className="group absolute right-3 md:right-4 top-[50%] translate-y-[-35%]"
+                >
+                  <svg className="h-[18px] md:h-[22px] w-[18px] md:w-[22px] stroke-accent group-hover:scale-110 transition-all duration-300">
+                    {showPassword ? (
+                      <use xlinkHref="/sprite.svg#icon-eye-on"></use>
+                    ) : (
+                      <use xlinkHref="/sprite.svg#icon-eye-off"></use>
+                    )}
+                  </svg>
+                </button>
+              </div>
+
               {errors.password && touched.password ? (
                 <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
                   {errors.password}
                 </p>
               ) : null}
-              {/* <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/1639b4cd5e7107f8ea012802af448df82382de85322aafeda0d64da15a590904?"
-                  className="aspect-square w-[18px]"
-                /> */}
-              <Field
-                className={cn(
-                  "w-full py-3 px-3 lg:py-4 mt-2 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent bg-white text-[rgba(38,38,38,0.8)] leading-[18px] font-medium text-[14px] md:text-4 placeholder:text-sm md:placeholder:text-base",
-                  touched.confirmPassword
-                    ? errors.confirmPassword
-                      ? "border-red-500 border-opacity-100"
-                      : "border-green-500 border-opacity-100"
-                    : ""
-                )}
-                placeholder="Confirm password"
-                name="confirmPassword"
-              />
+
+              <div className="relative">
+                <Field
+                  className={cn(
+                    "w-full py-3 px-3 lg:py-4 mt-2 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent bg-white text-[rgba(38,38,38,0.8)] leading-[18px] font-medium text-[14px] md:text-4 placeholder:text-sm md:placeholder:text-base",
+                    touched.confirmPassword
+                      ? errors.confirmPassword
+                        ? "border-red-500 border-opacity-100"
+                        : "border-green-500 border-opacity-100"
+                      : ""
+                  )}
+                  placeholder="Confirm password"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                />
+
+                <button
+                  type="button"
+                  onClick={onShowConfirmPasswordChange}
+                  className="group absolute right-3 md:right-4 top-[50%] translate-y-[-35%]"
+                >
+                  <svg className="h-[18px] md:h-[22px] w-[18px] md:w-[22px] stroke-accent group-hover:scale-110 transition-all duration-300">
+                    {showConfirmPassword ? (
+                      <use xlinkHref="/sprite.svg#icon-eye-on"></use>
+                    ) : (
+                      <use xlinkHref="/sprite.svg#icon-eye-off"></use>
+                    )}
+                  </svg>
+                </button>
+              </div>
               {errors.confirmPassword && touched.confirmPassword ? (
                 <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
                   {errors.confirmPassword}
                 </p>
               ) : null}
-              {/* <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/cf16b460095e51869194200975e24715573b0a2d05ec48dee5aaac86014d8f3d?"
-                  className="aspect-square w-[18px]"
-                /> */}
+
               <Button
                 type="submit"
                 className="flex justify-center items-center py-3 mt-6 w-full font-bold text-white uppercase whitespace-nowrap bg-amber-400 rounded-[30px] md:mt-8"
