@@ -10,10 +10,10 @@ const LoginImage = () => {
       }}
     >
       <div
-        className="flex items-end p-8 lg:pl-[61px] lg:pb-[97px] relative bg-top bg-cover bg-no-repeat w-full h-full"
+        className="flex items-end p-8 lg:pl-[61px] lg:pb-[97px] relative bg-top lg:bg-bottom bg-cover md:bg-[50px] lg:bg-auto bg-no-repeat w-full h-full"
         style={{
           backgroundImage:
-            "url(https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65c4c80c7fc157c12e418353/img/telegram-cloud-document-2-5460905295997845524-2.png)",
+            "url(https://cdn.animaapp.com/projects/65abdef27b6be51fbc22722e/releases/65c65434e35bd7d6ae7069ea/img/telegram-cloud-document-2-5460905295997845524-1.png)",
         }}
       >
         <div className="hidden md:flex gap-2 items-start bg-white rounded-3xl w-[294px] p-4">
