@@ -33,7 +33,7 @@ const Header = ({ light }: IHeaderProps) => {
             <AuthNav />
           </div>
 
-          <Sheet onOpenChange={() => console.log(1)}>
+          <Sheet>
             <SheetTrigger asChild>
               <button>
                 <svg
