@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
 
-import { registrationSchema } from "@/utils/validationFormSchemas";
+import { registerSchema } from "@/schemas";
 
 interface IRegistratiomFormValues {
   name: string;
@@ -43,7 +43,7 @@ const RegistrationForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={registrationSchema}
+      validationSchema={registerSchema}
       onSubmit={(values, actions) => {}}
     >
       {({ errors, touched, isValid, dirty }) => (

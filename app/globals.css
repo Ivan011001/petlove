@@ -73,3 +73,7 @@ main {
 input {
   border-radius: 30px;
 }
+
+a {
+  cursor: pointer;
+}
