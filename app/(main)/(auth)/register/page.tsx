@@ -1,63 +1,40 @@
-import Image from "next/image";
+import Link from "next/link";
+
+import RegistrationImage from "./_components/registration-image";
 import RegistrationForm from "./_components/registration-form";
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
-    <main className="flex h-full flex-col md:flex-row lg:flex-col items-center justify-center">
-      <div className="flex flex-col bg-stone-50 max-md:px-5">
-        <div className="max-md:max-w-full lg:h-full lg:w-full">
-          <div className="gap-5 lg:gap-[32px] max-md:flex-col lg:flex max-md:gap-0 relative">
-            <div className="flex-col justify-center bg-amber-400 max-w-[335px] rounded-[30px] md:rounded-[60px] mb-[10px] md:max-w-[704px] md:max-h-[302px] relative overflow-hidden lg:max-h-[690px] lg:max-w-[592px]">
-              <div className="relative flex-col w-full aspect-[1.19] md:h-[302px] lg:h-[690px]">
-                <Image
-                  className="absolute top-[22px] right-0 md:w-[572px] md:top-[40px] md:left-[106px] lg:w-[532px] lg:h-[654px] lg:left-[30px]"
-                  alt="Rectangle"
-                  src="https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65c4c80c7fc157c12e418353/img/rectangle-4561.svg"
-                  width={320}
-                  height={414}
-                />
-                <Image
-                  src="https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65c4c80c7fc157c12e418353/img/telegram-cloud-document-2-5460905295997845524-2.png"
-                  className="object-cover absolute inset-0 md:w-[364px] md:h-[374px] md:left-[270px] md:top-[24px] lg:top-16 lg:w-[536px] lg:h-[632px] lg:left-9"
-                  alt="Big cat"
-                  width={334}
-                  height={280}
-                  priority={true}
-                />
-                <div className="relative gap-2 items-start px-4 py-4 bg-white rounded-3xl hidden md:flex md:left-[32px] md:top-[149px] md:w-[294px] md:h-[121px] lg:left-[65px] lg:top-[470px]">
-                  <div className="relative bg-[#FFF4DF] rounded-full w-[60px] h-[60px]">
-                    <Image
-                      src="/cat.png"
-                      alt="Cat"
-                      className="absolute h-8 w-8 top-[12px] left-[14px]"
-                      width={32}
-                      height={32}
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 ">
-                    <div className="flex gap-5 justify-between w-full">
-                      <p className="text-base font-bold text-amber-400">Jack</p>
-                      <div className="flex gap-1 my-auto text-xs font-medium tracking-tight leading-4">
-                        <p className="grow text-neutral-800 text-opacity-50">
-                          Birthday:{" "}
-                        </p>
-                        <p className="grow text-neutral-800">18.10.2021</p>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-xs font-medium tracking-tight leading-4 text-neutral-800 text-opacity-80">
-                      Jack is a gray Persian cat with green eyes. He loves to be pampered
-                      and groomed, and enjoys playing with toys.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="container min-h-full flex flex-col lg:flex-row gap-2.5 md:gap-4 lg:gap-8 pb-5">
+      <section className="flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full min-h-[280px] md:min-h-[302px] h-auto lg:h-full">
+        <RegistrationImage />
+      </section>
+      <section className="flex items-center justify-center rounded-3xl md:rounded-[60px] bg-white w-full h-auto lg:h-full py-[40px] px-5">
+        <div className="lg:w-[424px]">
+          <h2 className="text-neutral-800 text-3xl md:text-5xl font-bold leading-7 md:leading-10 mb-3 md:mb-4">
+            Registration
+          </h2>
+          <p className="text-neutral-800 text-sm md:text-lg font-medium leading-none md:leading-snug mb-6">
+            Thank you for your interest in our platform.
+          </p>
+
+          <div className="mb-3 md:mb-4">
             <RegistrationForm />
           </div>
+
+          <p className="text-center text-neutral-800 text-opacity-50 text-xs md:text-sm font-medium leading-none md:leading-tight">
+            Already have an account??{" "}
+            <Link
+              className="text-accent text-xs md:text-sm font-bold underline leading-none md:leading-tight transition-all duration-300 hover:text-neutral-800/50"
+              href="/login"
+            >
+              Login
+            </Link>
+          </p>
         </div>
-      </div>
-    </main>
+      </section>
+    </div>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
