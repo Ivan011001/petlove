@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 
 import { Button } from "@/components/ui/button";
 
-import { loginSchema } from "@/utils/validationFormSchemas";
+import { loginSchema } from "@/schemas";
 
 import { cn } from "@/lib/utils";
 
