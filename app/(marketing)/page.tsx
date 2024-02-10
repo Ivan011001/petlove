@@ -16,15 +16,17 @@ export default function Home() {
           </h1>
           <div className="flex md:justify-end ">
             <p className="max-w-80 md:max-w-70 lg:max-w-[455px] text-white text-sm md:text-lg font-medium leading-5 md:leading-snug">
-              Choosing a pet for your home is a choice that is meant to enrich your life
-              with immeasurable joy and tenderness.
+              Choosing a pet for your home is a choice that is meant to enrich
+              your life with immeasurable joy and tenderness.
             </p>
           </div>
         </div>
       </section>
       <section
-        className="flex-grow rounded-3xl w-auto h-[335px] bg-cover bg-no-repeat bg-center"
-        style={{ backgroundImage: `url(/home.jpg)` }}
+        className="flex-grow rounded-3xl w-auto h-[335px] bg-cover bg-no-repeat bg-center relative"
+        style={{
+          backgroundImage: `url(/home.jpg), linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%)`,
+        }}
       ></section>
     </>
   );
