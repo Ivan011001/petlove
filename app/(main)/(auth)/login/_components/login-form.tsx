@@ -52,7 +52,7 @@ const LoginForm = () => {
                 placeholder="Email"
               />
               {touched.email && errors.email && (
-                <p className="mt-1 text-red-500 text-xs md:text-sm font-medium leading-none md:leading-tight">
+                <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
                   {errors.email}
                 </p>
               )}
@@ -90,7 +90,7 @@ const LoginForm = () => {
               </div>
 
               {touched.password && errors.password && (
-                <p className="mt-1 text-red-500 text-xs md:text-sm font-medium leading-none md:leading-tight">
+                <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
                   {errors.password}
                 </p>
               )}
