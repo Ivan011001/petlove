@@ -21,10 +21,10 @@ const NewsItem = ({ newsItem }: INewsItemProps) => {
       </div>
 
       <div className="flex flex-col gap-3">
-        <h3 className="h-[52px] text-neutral-800 text-base md:text-xl font-bold leading-tight">
+        <h3 className="h-[52px] text-neutral-800 text-base md:text-xl font-bold leading-tight md:leading-[1.3] overflow-hidden">
           {newsItem.title}
         </h3>
-        <p className="h-[80px] text-neutral-800 text-sm md:text-base font-medium leading-none md:leading-tight">
+        <p className="h-[80px] text-neutral-800 text-sm md:text-base font-medium leading-none md:leading-tight overflow-hidden">
           {newsItem.text}
         </p>
       </div>
