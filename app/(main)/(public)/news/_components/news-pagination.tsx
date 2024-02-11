@@ -17,17 +17,23 @@ interface INewsPaginationProps {
 }
 
 export const NewsPagination = ({ meta }: INewsPaginationProps) => {
-  const { currentPage, next: nextPage } = meta;
+  const { prev: prevPage, currentPage, next: nextPage } = meta;
 
   return (
     <Pagination>
       <PaginationContent className="flex items-center gap-[11px] md:gap-6">
         <div className="flex items-center gap-1.5 md:gap-2">
           <PaginationItem>
-            <PaginationDoublePrevious disabled href="#" />
+            <PaginationDoublePrevious
+              disabled={!prevPage || prevPage - 1 === null}
+              href={`/news?page=${prevPage ? prevPage - 1 : ""}`}
+            />
           </PaginationItem>
           <PaginationItem>
-            <PaginationPrevious disabled href="#" />
+            <PaginationPrevious
+              disabled={!prevPage || prevPage - 1 === null}
+              href={`/news?page=${prevPage}`}
+            />
           </PaginationItem>
         </div>
 
@@ -39,11 +45,13 @@ export const NewsPagination = ({ meta }: INewsPaginationProps) => {
           </PaginationItem>
 
           <PaginationItem>
-            <PaginationLink href="#">{nextPage}</PaginationLink>
+            <PaginationLink href={`/news?page=${nextPage}`}>
+              {nextPage}
+            </PaginationLink>
           </PaginationItem>
 
           <PaginationItem className="hidden md:flex">
-            <PaginationLink href="#">
+            <PaginationLink href={`/news?page=${nextPage ? nextPage + 1 : ""}`}>
               {nextPage ? nextPage + 1 : null}
             </PaginationLink>
           </PaginationItem>
@@ -55,10 +63,16 @@ export const NewsPagination = ({ meta }: INewsPaginationProps) => {
 
         <div className="flex items-center gap-1.5">
           <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext
+              disabled={!nextPage || nextPage + 1 === null}
+              href={`/news?page=${nextPage}`}
+            />
           </PaginationItem>
           <PaginationItem>
-            <PaginationDoubleNext href="#" />
+            <PaginationDoubleNext
+              disabled={!nextPage || nextPage + 1 === null}
+              href={`/news?page=${nextPage ? nextPage + 1 : ""}`}
+            />
           </PaginationItem>
         </div>
       </PaginationContent>

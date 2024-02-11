@@ -6,12 +6,16 @@ import Title from "@/components/title";
 import NewsList from "./_components/news-list";
 import NewsPagination from "./_components/news-pagination";
 
-const getAllNews = async (): Promise<{
+const getAllNews = async ({
+  page = "1",
+}: {
+  page?: string;
+}): Promise<{
   data: News[];
   meta: IMetaPagination;
 }> => {
   try {
-    const response = await axiosInstance.get("/news");
+    const response = await axiosInstance.get(`/news?page=${page}`);
 
     return response.data;
   } catch (error: any) {
@@ -19,8 +23,13 @@ const getAllNews = async (): Promise<{
   }
 };
 
-const NewsPage = async () => {
-  const { data: news, meta } = await getAllNews();
+const NewsPage = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) => {
+  const { page } = searchParams;
+  const { data: news, meta } = await getAllNews({ page });
 
   return (
     <div>
