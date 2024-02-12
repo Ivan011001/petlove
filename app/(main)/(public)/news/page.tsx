@@ -3,8 +3,10 @@ import { axiosInstance } from "@/services";
 import type { News, IMetaPagination } from "@/types";
 
 import Title from "@/components/title";
+
 import NewsList from "./_components/news-list";
-import NewsPagination from "./_components/news-pagination";
+import NewsError from "./_components/news-error";
+import ViewPagination from "../_components/page-pagination";
 
 const getAllNews = async ({
   page = "1",
@@ -28,11 +30,11 @@ const NewsPage = async ({
 }: {
   searchParams: { [key: string]: string };
 }) => {
-  const { page } = searchParams;
+  const page = searchParams["page"] ?? "1";
   const { data: news, meta } = await getAllNews({ page });
 
   return (
-    <div>
+    <div className="h-full flex flex-col justify-between">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-5 mb-6 md:mb-[44px] lg:mb-[60px]">
         <Title>News</Title>
         <div className="relative">
@@ -54,13 +56,19 @@ const NewsPage = async ({
         </div>
       </div>
 
-      <div className="mb-[44px] md:mb-[60px]">
-        <NewsList news={news} />
-      </div>
+      {news.length !== 0 ? (
+        <section>
+          <div className="mb-[44px] md:mb-[60px]">
+            <NewsList news={news} />
+          </div>
 
-      <div className="flex justify-center items-center">
-        <NewsPagination meta={meta} />
-      </div>
+          <div className="flex justify-center items-center">
+            <ViewPagination meta={meta} view="news" />
+          </div>
+        </section>
+      ) : (
+        <NewsError />
+      )}
     </div>
   );
 };
