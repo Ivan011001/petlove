@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname, useSearchParams } from "next/navigation";
+
 import {
   Pagination,
   PaginationContent,
@@ -14,11 +18,23 @@ import type { IMetaPagination } from "@/types";
 
 interface IViewPaginationProps {
   meta: IMetaPagination;
-  view: string;
 }
 
-export const ViewPagination = ({ meta, view }: IViewPaginationProps) => {
+export const ViewPagination = ({ meta }: IViewPaginationProps) => {
   const { prev: prevPage, currentPage, next: nextPage, lastPage } = meta;
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createPageURL = (pageNumber: number | null) => {
+    if (!pageNumber) {
+      return pathname;
+    }
+
+    const params = new URLSearchParams(searchParams);
+    params.set("page", pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
+  };
 
   return (
     <Pagination>
@@ -27,20 +43,20 @@ export const ViewPagination = ({ meta, view }: IViewPaginationProps) => {
           <PaginationItem>
             <PaginationDoublePrevious
               disabled={!prevPage || currentPage - 5 <= 0}
-              href={`/${view}?page=${currentPage - 5}`}
+              href={createPageURL(currentPage - 5)}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationPrevious
               disabled={!prevPage || currentPage - 1 <= 0}
-              href={`/${view}?page=${prevPage}`}
+              href={createPageURL(prevPage)}
             />
           </PaginationItem>
         </div>
 
         <div className="flex items-center gap-2.5">
           <PaginationItem>
-            <PaginationLink isActive href="#">
+            <PaginationLink isActive href={createPageURL(currentPage)}>
               {currentPage}
             </PaginationLink>
           </PaginationItem>
@@ -48,14 +64,14 @@ export const ViewPagination = ({ meta, view }: IViewPaginationProps) => {
           {nextPage && (
             <>
               <PaginationItem>
-                <PaginationLink href={`/${view}?page=${nextPage}`}>
+                <PaginationLink href={createPageURL(nextPage)}>
                   {nextPage}
                 </PaginationLink>
               </PaginationItem>
 
               {nextPage < lastPage && (
                 <PaginationItem className="hidden md:block">
-                  <PaginationLink href={`/${view}?page=${nextPage + 1}`}>
+                  <PaginationLink href={createPageURL(nextPage + 1)}>
                     {nextPage + 1}
                   </PaginationLink>
                 </PaginationItem>
@@ -74,13 +90,13 @@ export const ViewPagination = ({ meta, view }: IViewPaginationProps) => {
           <PaginationItem>
             <PaginationNext
               disabled={!nextPage || currentPage + 1 > lastPage}
-              href={`/${view}?page=${nextPage}`}
+              href={createPageURL(nextPage)}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationDoubleNext
               disabled={!nextPage || currentPage + 5 > lastPage}
-              href={`/${view}?page=${currentPage + 5}`}
+              href={createPageURL(currentPage + 5)}
             />
           </PaginationItem>
         </div>
