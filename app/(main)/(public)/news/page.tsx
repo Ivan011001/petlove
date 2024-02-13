@@ -45,7 +45,7 @@ const NewsPage = async ({
 
   return (
     <div className="h-full flex flex-col justify-between">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-5 mb-6 md:mb-[44px] lg:mb-[60px]">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-5 mb-6 md:mb-[44px] lg:mb-[60px]">
         <Title>News</Title>
         <NewsSearch />
       </div>

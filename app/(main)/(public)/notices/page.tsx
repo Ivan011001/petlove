@@ -1,5 +1,7 @@
+import Title from "@/components/title";
+
 const NoticesPage = () => {
-  return <div>NoticesPage</div>;
+  return <Title>Notices</Title>;
 };
 
 export default NoticesPage;
