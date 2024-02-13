@@ -6,10 +6,10 @@ import RegistrationForm from "./_components/registration-form";
 const LoginPage = () => {
   return (
     <div className="container min-h-full flex flex-col lg:flex-row gap-2.5 md:gap-4 lg:gap-8 pb-5">
-      <section className="flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full min-h-[280px] md:min-h-[302px] h-auto lg:h-full">
+      <section className="flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full sm:max-w-[335px] min-h-[280px] md:max-h-[302px] md:max-w-[704px] h-auto lg:max-h-full mx-auto">
         <RegistrationImage />
       </section>
-      <section className="flex items-center justify-center rounded-3xl md:rounded-[60px] bg-white w-full h-auto lg:h-full py-[40px] px-5">
+      <section className="flex items-center justify-center rounded-3xl md:rounded-[60px] bg-white w-full h-auto lg:h-full py-[40px] px-5 sm:max-w-[335px] mx-auto md:max-w-[704px]">
         <div className="lg:w-[424px]">
           <h2 className="text-neutral-800 text-3xl md:text-5xl font-bold leading-7 md:leading-10 mb-3 md:mb-4">
             Registration
