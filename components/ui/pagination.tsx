@@ -45,7 +45,7 @@ type PaginationLinkProps = {
   isActive?: boolean;
   disabled?: boolean;
 } & Pick<ButtonProps, "size"> &
-  React.ComponentProps<typeof Link>;
+  React.ComponentProps<"button">;
 
 const PaginationLink = ({
   className,
@@ -54,7 +54,7 @@ const PaginationLink = ({
   disabled,
   ...props
 }: PaginationLinkProps) => (
-  <Link
+  <button
     aria-current={isActive ? "page" : undefined}
     className={cn(
       "flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full border border-neutral-800 border-opacity-5 text-sm md:text-lg font-bold leading-none md:leading-shug hover:bg-accent hover:border-accent hover:text-white duration-300 transition-all",
@@ -63,7 +63,7 @@ const PaginationLink = ({
       disabled && "pointer-events-none"
     )}
     {...props}
-  />
+  ></button>
 );
 PaginationLink.displayName = "PaginationLink";
 
