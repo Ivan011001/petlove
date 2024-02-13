@@ -27,7 +27,7 @@ export const ViewPagination = ({ meta }: IViewPaginationProps) => {
   const searchParams = useSearchParams();
 
   const createPageURL = (pageNumber: number | null) => {
-    if (!pageNumber) {
+    if (!pageNumber || pageNumber <= 0) {
       return pathname;
     }
 
