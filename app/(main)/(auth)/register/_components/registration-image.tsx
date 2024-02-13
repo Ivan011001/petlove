@@ -10,13 +10,13 @@ const RegistrationImage = () => {
       }}
     >
       <div
-        className="flex items-end p-8 lg:pl-[61px] lg:pb-[97px] absolute md:right-[90px] lg:bg-bottom bg-cover md:float-end md:top-0 md:w-[364px] md:h-[302px] lg:bg-auto bg-no-repeat w-full h-full lg:h-[632px]"
+        className="flex items-end p-8 lg:pl-[61px] lg:pb-[97px] absolute md:right-[90px] lg:bg-bottom bg-cover md:float-end md:w-[364px] md:h-[302px] lg:bg-auto bg-no-repeat w-full h-full lg:h-[654px] lg:bottom-0"
         style={{
           backgroundImage:
             "url(https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65c4c80c7fc157c12e418353/img/telegram-cloud-document-2-5460905295997845524-2.png)",
         }}
       />
-      <div className="hidden md:flex gap-2 items-start bg-white rounded-3xl w-[294px] p-4 md:absolute md:top-[149px] md:left-8">
+      <div className="hidden md:flex gap-2 items-start bg-white rounded-3xl w-[294px] p-4 md:absolute md:bottom-8 md:left-8 lg:left-[65px] lg:bottom-[106px]">
         <div className="flex-shrink rounded-full w-[60px] h-[60px] bg-yellow-50 flex justify-center items-center p-4">
           <Image src="/cat.png" alt="Cat" width={32} height={32} />
         </div>
