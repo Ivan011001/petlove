@@ -5,7 +5,6 @@ import type { News, IMetaPagination } from "@/types";
 import Title from "@/components/title";
 
 import NewsList from "./_components/news-list";
-import NewsNotFound from "./_components/news-not-found";
 import NewsSearch from "./_components/news-search";
 import ViewPagination from "../_components/page-pagination";
 
@@ -50,19 +49,15 @@ const NewsPage = async ({
         <NewsSearch />
       </div>
 
-      {news.length !== 0 ? (
-        <section>
-          <div className="mb-[44px] md:mb-[60px]">
-            <NewsList news={news} />
-          </div>
+      <section>
+        <div className="mb-[44px] md:mb-[60px]">
+          <NewsList news={news} />
+        </div>
 
-          <div className="flex justify-center items-center">
-            <ViewPagination meta={meta} />
-          </div>
-        </section>
-      ) : (
-        <NewsNotFound />
-      )}
+        <div className="flex justify-center items-center">
+          <ViewPagination meta={meta} />
+        </div>
+      </section>
     </div>
   );
 };
