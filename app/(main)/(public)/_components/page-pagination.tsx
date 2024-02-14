@@ -48,20 +48,20 @@ export const ViewPagination = ({ meta }: IViewPaginationProps) => {
           <PaginationItem>
             <PaginationDoublePrevious
               disabled={!prevPage || currentPage - 5 <= 0}
-              onClick={() => onPageChange(currentPage - 5)}
+              href={createPageURL(currentPage - 5)}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationPrevious
               disabled={!prevPage || currentPage - 1 <= 0}
-              onClick={() => onPageChange(prevPage)}
+              href={createPageURL(prevPage)}
             />
           </PaginationItem>
         </div>
 
         <div className="flex items-center gap-2.5">
           <PaginationItem>
-            <PaginationLink isActive onClick={() => onPageChange(currentPage)}>
+            <PaginationLink isActive href={createPageURL(currentPage)}>
               {currentPage}
             </PaginationLink>
           </PaginationItem>
@@ -69,14 +69,14 @@ export const ViewPagination = ({ meta }: IViewPaginationProps) => {
           {nextPage && (
             <>
               <PaginationItem>
-                <PaginationLink onClick={() => onPageChange(nextPage)}>
+                <PaginationLink href={createPageURL(nextPage)}>
                   {nextPage}
                 </PaginationLink>
               </PaginationItem>
 
               {nextPage < lastPage && (
                 <PaginationItem className="hidden md:block">
-                  <PaginationLink onClick={() => onPageChange(nextPage + 1)}>
+                  <PaginationLink href={createPageURL(nextPage + 1)}>
                     {nextPage + 1}
                   </PaginationLink>
                 </PaginationItem>
@@ -95,13 +95,13 @@ export const ViewPagination = ({ meta }: IViewPaginationProps) => {
           <PaginationItem>
             <PaginationNext
               disabled={!nextPage || currentPage + 1 > lastPage}
-              onClick={() => onPageChange(nextPage)}
+              href={createPageURL(nextPage)}
             />
           </PaginationItem>
           <PaginationItem>
             <PaginationDoubleNext
               disabled={!nextPage || currentPage + 5 > lastPage}
-              onClick={() => onPageChange(currentPage + 5)}
+              href={createPageURL(currentPage + 5)}
             />
           </PaginationItem>
         </div>

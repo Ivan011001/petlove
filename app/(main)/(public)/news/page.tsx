@@ -9,7 +9,7 @@ import NewsSearch from "./_components/news-search";
 import ViewPagination from "../_components/page-pagination";
 
 const getAllNews = async ({
-  page = 1,
+  page,
   search,
 }: {
   page?: number;
@@ -40,7 +40,7 @@ const NewsPage = async ({
   const search = searchParams?.search || "";
   const page = Number(searchParams?.page) || 1;
 
-  const { data: news, meta } = await getAllNews({ page, search });
+  const { data, meta } = await getAllNews({ page, search });
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -51,7 +51,7 @@ const NewsPage = async ({
 
       <section>
         <div className="mb-[44px] md:mb-[60px]">
-          <NewsList news={news} />
+          <NewsList news={data} />
         </div>
 
         <div className="flex justify-center items-center">
