@@ -1,20 +1,9 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 import Header from "./_components/header";
 
-import Image from "next/image";
-
 const NotFound = () => {
-  const router = useRouter();
-
-  const onHandleRedirect = () => {
-    router.replace("/");
-  };
-
   return (
     <>
       <Header />
@@ -43,13 +32,12 @@ const NotFound = () => {
               <p className="text-white text-base md:text-2xl font-bold leading-tight md:leading-7 text-center">
                 Ooops! This page not found :(
               </p>
-              <Button
-                className="md:px-7 md:py-3.5"
-                variant="outline"
-                onClick={onHandleRedirect}
+              <Link
+                href="/"
+                className="px-4 py-3 md:px-7 md:py-3.5 rounded-3xl text-sm md:text-base font-bold leading-none md:leading-tight bg-muted-foreground hover:bg-accent text-accent hover:text-muted-foreground transiton-all duration-300"
               >
                 To home page
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
