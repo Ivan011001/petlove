@@ -2,6 +2,7 @@
 
 import SelectFilter from "./select-filter";
 import ChipFilter from "./chip-filter";
+import { Suspense } from "react";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -59,9 +60,15 @@ const NoticesFilters = () => {
       <div className="h-[1px] w-full bg-neutral-800 bg-opacity-10" />
 
       <div className="flex flex-wrap gap-2.5">
-        {chips.map((chip) => (
-          <ChipFilter key={chip.value} value={chip.value} label={chip.label} />
-        ))}
+        <Suspense>
+          {chips.map((chip) => (
+            <ChipFilter
+              key={chip.value}
+              value={chip.value}
+              label={chip.label}
+            />
+          ))}
+        </Suspense>
       </div>
     </div>
   );
