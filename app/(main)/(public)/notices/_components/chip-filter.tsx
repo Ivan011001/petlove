@@ -28,7 +28,7 @@ const ChipFilter = ({ value, label }: IChipFilterProps) => {
     const params = new URLSearchParams(searchParams);
 
     if (checked) {
-      params.set(value, "");
+      params.set(value, "true");
     } else {
       params.delete(value);
     }
