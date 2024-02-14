@@ -20,7 +20,7 @@ const FriendsItem = ({ friendsItem }: IFriendsItemProps) => {
             alt="Company logo"
             width={80}
             height={80}
-            className="md: w-[90px] md:h-[90px]"
+            className="md:w-[90px] md:h-[90px]"
           />
         </div>
         <div className="flex flex-col">
