@@ -1,22 +1,58 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useMediaQuery } from "usehooks-ts";
 
+// import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
+import { getOptions } from "@/utils/data";
+
 interface ISelectFilterProps {
   label: string;
-  value?: string;
+  value: string;
 }
 
 const SelectFilter = ({ label, value }: ISelectFilterProps) => {
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const { replace } = useRouter();
+
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const options = await getOptions(value);
+      setOptions(options);
+    };
+
+    fetch();
+  }, [value]);
+
+  // const onHandleChange = (term: string) => {
+  //   const params = new URLSearchParams(searchParams);
+
+  //   if (term) {
+  //     params.set(value, term);
+  //   } else {
+  //     params.delete(value);
+  //   }
+
+  //   replace(`${pathname}?${params.toString()}`);
+  // };
+
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1280px)");
   const isDesktop = useMediaQuery("(min-width: 1280px)");
+
+  const finalOption = options.map((option: string) => {
+    return { value: option, label: option };
+  });
 
   return (
     <Select
       className="flex-grow w-full"
       placeholder={label}
+      options={finalOption}
       styles={{
         control: (provided, _) => ({
           ...provided,
@@ -42,15 +78,12 @@ const SelectFilter = ({ label, value }: ISelectFilterProps) => {
         }),
         option: (provided, state) => ({
           ...provided,
-          color: state.isFocused ? "black" : "rgba(18, 20, 23, 0.2)",
-          fontFamily: "Manrope",
+          color: state.isFocused ? "#FFCA28" : "#262626",
+          opacity: state.isFocused ? "" : "60",
           backgroundColor: "white",
           fontWeight: 500,
-          // Add additional styles based on device
-          ...(isTablet &&
-            {
-              // Add mobile specific styles here
-            }),
+
+          ...(isTablet && {}),
         }),
         menuList: (provided) => ({
           ...provided,
@@ -66,11 +99,8 @@ const SelectFilter = ({ label, value }: ISelectFilterProps) => {
           "::-webkit-scrollbar-thumb:hover": {
             background: "rgba(18, 20, 23, 0.05)",
           },
-          // Add additional styles based on device
-          ...(isTablet &&
-            {
-              // Add mobile specific styles here
-            }),
+
+          ...(isTablet && {}),
         }),
         placeholder: (provided) => ({
           ...provided,
