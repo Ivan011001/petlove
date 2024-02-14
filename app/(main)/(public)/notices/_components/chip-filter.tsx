@@ -1,6 +1,8 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface IChipFilterProps {
   value: string;
@@ -12,40 +14,42 @@ const ChipFilter = ({ value, label }: IChipFilterProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [isChecked, setIsChecked] = useState(searchParams.has(value));
+
+  useEffect(() => {
+    setIsChecked(searchParams.has(value));
+  }, [searchParams, value]);
+
   const onChangeBackgroundColor = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const labelNode = event.target.parentNode;
-    if (!labelNode || !(labelNode instanceof HTMLLabelElement)) return;
-
-    const label = labelNode as HTMLLabelElement;
-
     const checked = event.target.checked;
     const value = event.target.value;
     const params = new URLSearchParams(searchParams);
 
     if (checked) {
-      label.style.backgroundColor = "#F6B83D";
-      label.style.color = "white";
-
       params.set(value, "");
     } else {
-      label.style.backgroundColor = "white";
-      label.style.color = "#262626";
-
       params.delete(value);
     }
 
     replace(`${pathname}?${params.toString()}`);
+    setIsChecked(checked);
   };
 
   return (
-    <label className="p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex">
+    <label
+      className={cn(
+        "p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex cursor-pointer",
+        isChecked && "bg-accent text-white"
+      )}
+    >
       <input
         type="checkbox"
         className="hidden"
         value={value}
         onChange={onChangeBackgroundColor}
+        checked={isChecked}
       />
       <span className="text-neutral-800 text-inherit text-sm md:text-base font-medium leading-none md:leading-tight">
         {label}

@@ -1,9 +1,23 @@
-import PageContainer from "@/components/page-container";
 import Title from "@/components/title";
 
 import NoticesFilters from "./_components/notices-filters";
 
-const NoticesPage = () => {
+const fetchNotices = async ({}: {
+  search: string;
+  categoty: string;
+  gender: string;
+  type: string;
+  location: string;
+  popular: boolean;
+  unpopular: boolean;
+  cheap: boolean;
+  expensive: boolean;
+}) => {
+  try {
+  } catch (error) {}
+};
+
+const NoticesPage = async () => {
   return (
     <div>
       <Title>Find your favorite pet</Title>
