@@ -1,6 +1,7 @@
 "use client";
 
-import Select from "react-select";
+import SelectFilter from "./select-filter";
+import ChipFilter from "./chip-filter";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -32,40 +33,13 @@ const NoticesFilters = () => {
           </svg>
         </div>
 
-        <div className="flex justify-between gap-2 md:flex-grow">
-          <Select
-            className="flex-grow w-full"
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                border: "none",
-                borderRadius: "24px",
-              }),
-            }}
-          />
-          <Select
-            className="flex-grow w-full"
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                border: "none",
-                borderRadius: "24px",
-              }),
-            }}
-          />
+        <div className="flex justify-between gap-2 md:min-w-[356px] md:flex-grow">
+          <SelectFilter label="Category" />
+          <SelectFilter label="By gender" />
         </div>
 
-        <div className="flex-grow">
-          <Select
-            className="w-full"
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                border: "none",
-                borderRadius: "24px",
-              }),
-            }}
-          />
+        <div className="flex-grow ">
+          <SelectFilter label="By type" />
         </div>
 
         <div className="relative flex-grow">
@@ -86,7 +60,7 @@ const NoticesFilters = () => {
 
       <div className="flex flex-wrap gap-2.5">
         {chips.map((chip) => (
-          <FilterChip key={chip.value} value={chip.value} label={chip.label} />
+          <ChipFilter key={chip.value} value={chip.value} label={chip.label} />
         ))}
       </div>
     </div>
@@ -94,31 +68,3 @@ const NoticesFilters = () => {
 };
 
 export default NoticesFilters;
-
-const FilterChip = ({ value, label }: { value: string; label: string }) => {
-  const onChangeBackgroundColor = (event: any) => {
-    const label = event.target.parentNode;
-
-    if (event.target.checked) {
-      label.style.backgroundColor = "#F6B83D";
-      label.style.color = "white";
-    } else {
-      label.style.backgroundColor = "white";
-      label.style.color = "#262626";
-    }
-  };
-
-  return (
-    <label className="p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex">
-      <input
-        type="checkbox"
-        className="hidden"
-        value={value}
-        onChange={onChangeBackgroundColor}
-      />
-      <span className="text-neutral-800 text-inherit text-sm md:text-base font-medium leading-none md:leading-tight">
-        {label}
-      </span>
-    </label>
-  );
-};
