@@ -3,6 +3,8 @@ import Title from "@/components/title";
 import NoticesFilters from "./_components/notices-filters";
 import { IMetaPagination, Notice } from "@/types";
 import { axiosInstance } from "@/services";
+import NoticesList from "./_components/notices-list";
+import ViewPagination from "../_components/page-pagination";
 
 interface INoticesSearchProp {
   page?: number;
@@ -89,22 +91,10 @@ const NoticesPage = async ({
       <section className="p-5 md:py-10 md:px-8 lg:px-10 rounded-3xl bg-[#FFF4DF]">
         <NoticesFilters />
       </section>
-
-      <ul>
-        {data.map((notice) => {
-          return (
-            <li key={notice.id}>
-              <div className="flex">
-                <p>{notice.species}</p>
-                <p>{notice.title}</p>
-                <p>{notice.category}</p>
-                <p>{notice.location}</p>
-                <p>{notice.sex}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="mb-11 md:mb-[60px]">
+        <NoticesList notices={data} />
+      </div>
+      <ViewPagination meta={meta} />
     </div>
   );
 };
