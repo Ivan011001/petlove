@@ -2,6 +2,7 @@
 
 import React from "react";
 import Select from "react-select";
+import { useMediaQuery } from "usehooks-ts";
 
 interface ISelectFilterProps {
   label: string;
@@ -9,8 +10,8 @@ interface ISelectFilterProps {
 }
 
 const SelectFilter = ({ label, value }: ISelectFilterProps) => {
-  const isTablet = window.innerWidth >= 768 && window.innerWidth < 1280;
-  const isDesktop = window.innerWidth >= 1280;
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1280px)");
+  const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   return (
     <Select
