@@ -4,7 +4,7 @@ import { IPet } from "@/types";
 
 import { Trash2 } from "lucide-react";
 
-import { capitalizeWord } from "@/utils";
+import { capitalizeWord, shortenWord } from "@/utils";
 
 interface IPetsItemProps {
   pet: IPet;
@@ -33,13 +33,13 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
   ];
 
   return (
-    <div className="w-full relative p-4 border rounded-2xl border-neutral-800 border-opacity-10">
-      <button className="group absolute top-3 right-3 w-[30px] h-[30px] p-[7px] bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300">
+    <div className="w-full relative p-4 pr-[46px] md:py-[22px] md:pl-4 md:pr-[27px] border rounded-2xl md:rounded-[20px] border-neutral-800 border-opacity-10">
+      <button className="group absolute top-3 right-3 w-[30px] h-[30px] md:w-8 md:h-8 bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300">
         <Trash2 className="h-4 w-4 stroke-accent group-hover:stroke-yellow-50 transition-all duration-300" />
       </button>
 
       <div className="flex gap-[14px]">
-        <div className="w-[66px] h-[66px] flex-shrink-0">
+        <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] flex-shrink-0">
           <Image
             className="rounded-full"
             src={imgURL}
@@ -49,9 +49,9 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
           />
         </div>
 
-        <div className="flex flex-col gap-2 min-w-[153px]">
-          <h4 className="w-36 text-zinc-800 text-sm font-bold leading-none overflow-ellipsis">
-            {title}
+        <div className="flex flex-col gap-2 md:gap-3 min-w-[153px]">
+          <h4 className="text-zinc-800 text-sm font-bold leading-none">
+            {shortenWord(title, 18)}
           </h4>
 
           <ul className="flex gap-2.5 flex-wrap">
