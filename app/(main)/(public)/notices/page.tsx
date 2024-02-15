@@ -87,8 +87,10 @@ const NoticesPage = async ({
 
   return (
     <div>
-      <Title>Find your favorite pet</Title>
-      <section className="p-5 md:py-10 md:px-8 lg:px-10 rounded-3xl bg-[#FFF4DF]">
+      <div className="mb-10 md:mb-11 lg:mb-11">
+        <Title>Find your favorite pet</Title>
+      </div>
+      <section className="p-5 md:py-10 md:px-8 lg:px-10 rounded-3xl bg-[#FFF4DF] mb-10 md:mb-8 lg:mb-10">
         <NoticesFilters />
       </section>
       <div className="mb-11 md:mb-[60px]">

@@ -1,24 +1,29 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Select from "react-select";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
-// import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Select from "react-select";
 
 import { getOptions } from "@/utils/data";
+import { capitalizeWord } from "@/utils";
 
 interface ISelectFilterProps {
   label: string;
   value: string;
+  param: string;
 }
 
-const SelectFilter = ({ label, value }: ISelectFilterProps) => {
-  // const pathname = usePathname();
-  // const searchParams = useSearchParams();
-  // const { replace } = useRouter();
-
+const SelectFilter = ({ label, value, param }: ISelectFilterProps) => {
   const [options, setOptions] = useState([]);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1280px)");
+  const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   useEffect(() => {
     const fetch = async () => {
@@ -29,30 +34,32 @@ const SelectFilter = ({ label, value }: ISelectFilterProps) => {
     fetch();
   }, [value]);
 
-  // const onHandleChange = (term: string) => {
-  //   const params = new URLSearchParams(searchParams);
-
-  //   if (term) {
-  //     params.set(value, term);
-  //   } else {
-  //     params.delete(value);
-  //   }
-
-  //   replace(`${pathname}?${params.toString()}`);
-  // };
-
-  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1280px)");
-  const isDesktop = useMediaQuery("(min-width: 1280px)");
-
-  const finalOption = options.map((option: string) => {
-    return { value: option, label: option };
+  const finalOptions = options.map((option: string) => {
+    return { value: option, label: capitalizeWord(option) };
   });
+
+  const onHandleChange = (term: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    params.set("page", "1");
+    if (term) {
+      params.set(param, term);
+    } else {
+      params.delete(param);
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <Select
       className="flex-grow w-full"
+      onChange={(e) => onHandleChange(e?.value as string)}
+      defaultInputValue={capitalizeWord(
+        searchParams.get(param)?.toString() as string
+      )}
       placeholder={label}
-      options={finalOption}
+      options={finalOptions}
       styles={{
         control: (provided, _) => ({
           ...provided,
@@ -76,28 +83,38 @@ const SelectFilter = ({ label, value }: ISelectFilterProps) => {
             paddingLeft: "px",
           }),
         }),
+        menu: (provided, state) => ({
+          ...provided,
+          border: "none",
+          borderRadius: "16px",
+        }),
         option: (provided, state) => ({
           ...provided,
           color: state.isFocused ? "#FFCA28" : "#262626",
           opacity: state.isFocused ? "" : "60",
           backgroundColor: "white",
-          fontWeight: 500,
+
+          transition: "all",
+          transitionDuration: "300ms",
+          transitionProperty: "cubic-bezier(0.4, 0, 0.2, 1)",
 
           ...(isTablet && {}),
         }),
         menuList: (provided) => ({
           ...provided,
+          borderRadius: "16px",
           "::-webkit-scrollbar": {
-            width: "9px",
+            width: "8px",
           },
           "::-webkit-scrollbar-track": {
-            background: "rgba(18, 20, 23, 0.05)",
+            background: "transparent",
           },
           "::-webkit-scrollbar-thumb": {
-            background: "rgba(18, 20, 23, 0.05)",
+            borderRadius: "8px",
+            background: "rgba(38, 38, 38, 0.08)",
           },
           "::-webkit-scrollbar-thumb:hover": {
-            background: "rgba(18, 20, 23, 0.05)",
+            background: "rgba(38, 38, 38, 0.08)",
           },
 
           ...(isTablet && {}),
