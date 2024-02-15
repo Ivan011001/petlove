@@ -1,8 +1,8 @@
-import { IFriends } from "@/types/friends";
+import { IFriend } from "@/types";
 import FriendsItem from "./friends-item";
 
 interface IFriendsListProps {
-  friends: IFriends[];
+  friends: IFriend[];
 }
 
 const FriendsList = ({ friends }: IFriendsListProps) => {

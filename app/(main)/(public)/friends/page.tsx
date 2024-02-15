@@ -1,10 +1,10 @@
 import Title from "@/components/title";
 import { axiosInstance } from "@/services";
-import { IFriends } from "@/types/friends";
+import { IFriend } from "@/types";
 import FriendsList from "./_components/friends-list";
 
 const getAllFriends = async (): Promise<{
-  data: IFriends[];
+  data: IFriend[];
 }> => {
   try {
     const response = await axiosInstance.get("/friends");

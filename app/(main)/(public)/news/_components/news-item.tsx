@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { News } from "@/types";
+import { INews } from "@/types";
 import { convertDate } from "@/utils";
 
 interface INewsItemProps {
-  newsItem: News;
+  newsItem: INews;
 }
 
 const NewsItem = ({ newsItem }: INewsItemProps) => {

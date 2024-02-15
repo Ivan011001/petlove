@@ -1,8 +1,8 @@
-import { IFriends } from "@/types/friends";
+import { IFriend } from "@/types";
 import Image from "next/image";
 
 interface IFriendsItemProps {
-  friendsItem: IFriends;
+  friendsItem: IFriend;
 }
 
 const FriendsItem = ({ friendsItem }: IFriendsItemProps) => {

@@ -1,9 +1,9 @@
-import { News } from "@/types";
+import { INews } from "@/types";
 
 import NewsItem from "./news-item";
 
 interface INewsListProps {
-  news: News[];
+  news: INews[];
 }
 
 const NewsList = ({ news }: INewsListProps) => {

@@ -17,7 +17,7 @@ const NotFound = () => {
               <div className="flex bg-white bg-opacity-10 rounded-full justify-end items-center h-[80px] w-[80px] sm:h-[110px] sm:w-[110px] md:h-[280px] md:w-[280px]">
                 <Image
                   className="h-[80px] w-[80px] sm:h-[110px] sm:w-[110px] md:h-[280px] md:w-[280px]"
-                  src="/not-found.png"
+                  src="/images/not-found.png"
                   alt="Not Found"
                   width={280}
                   height={280}

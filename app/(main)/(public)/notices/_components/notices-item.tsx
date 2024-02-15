@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Notice } from "@/types";
+import { INotice } from "@/types";
 import Image from "next/image";
 
 interface NoticeProps {
-  item: Notice;
+  item: INotice;
 }
 
 const NoticesItem = ({ item }: NoticeProps) => {
@@ -69,7 +69,6 @@ const NoticesItem = ({ item }: NoticeProps) => {
         <Button className="py-[14px] flex-grow text-sm font-inherit font-medium w-[231px]">
           Learn more
         </Button>
-
 
         <Button className="group w-[46px] h-[46px]" variant="outline">
           <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">

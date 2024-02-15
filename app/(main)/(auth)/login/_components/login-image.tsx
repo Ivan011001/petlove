@@ -18,7 +18,7 @@ const LoginImage = () => {
       />
       <div className="hidden md:flex gap-2 items-start bg-white rounded-3xl w-[294px] md:absolute md:bottom-8 md:left-8 p-4 lg:bottom-[97px] lg:left-[61px]">
         <div className="flex-shrink rounded-full w-[60px] h-[60px] bg-yellow-50 flex justify-center items-center p-4">
-          <Image src="/dog.png" alt="Dog" width={32} height={32} />
+          <Image src="/images/dog.png" alt="Dog" width={32} height={32} />
         </div>
         <div>
           <div className="flex items-center justify-between mb-2">
