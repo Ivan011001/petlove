@@ -1,6 +1,6 @@
 import Title from "@/components/title";
 import { axiosInstance } from "@/services";
-import { IFriend } from "@/types/friends";
+import { IFriend } from "@/types/friend";
 import FriendsList from "./_components/friends-list";
 
 const getAllFriends = async (): Promise<{

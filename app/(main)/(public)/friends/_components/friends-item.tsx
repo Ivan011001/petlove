@@ -1,4 +1,4 @@
-import { IFriend } from "@/types/friends";
+import { IFriend } from "@/types/friend";
 import Image from "next/image";
 
 interface IFriendsItemProps {
