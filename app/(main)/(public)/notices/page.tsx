@@ -1,10 +1,12 @@
+import { IMetaPagination, INotice } from "@/types";
+
+import { axiosInstance } from "@/services";
+
 import Title from "@/components/title";
+import ViewPagination from "../_components/page-pagination";
 
 import NoticesFilters from "./_components/notices-filters";
-import { IMetaPagination, Notice } from "@/types";
-import { axiosInstance } from "@/services";
 import NoticesList from "./_components/notices-list";
-import ViewPagination from "../_components/page-pagination";
 
 interface INoticesSearchProp {
   page?: number;
@@ -31,7 +33,7 @@ const getAllNotices = async ({
   cheap,
   expensive,
 }: INoticesSearchProp): Promise<{
-  data: Notice[];
+  data: INotice[];
   meta: IMetaPagination;
 }> => {
   try {
