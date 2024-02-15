@@ -25,7 +25,7 @@ export default function Home() {
       <section
         className="flex-grow rounded-3xl w-auto h-[335px] bg-cover bg-no-repeat bg-center relative"
         style={{
-          backgroundImage: `url(/home.jpg), linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%)`,
+          backgroundImage: `url(/images/home.jpg), linear-gradient(135deg, rgb(255, 168, 168) 10%, rgb(252, 255, 0) 100%)`,
         }}
       ></section>
     </>
