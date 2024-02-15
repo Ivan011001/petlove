@@ -6,7 +6,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 import Select from "react-select";
 
-import { getOptions } from "@/utils/data";
+import { getOptions } from "@/data";
 import { capitalizeWord } from "@/utils";
 
 interface ISelectFilterProps {
