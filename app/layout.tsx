@@ -18,6 +18,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  openGraph: {
+    title: "Petlove",
+    description: "Discover everething about your little friends! Join Petlove.",
+  },
 };
 
 export default function RootLayout({
