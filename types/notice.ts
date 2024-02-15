@@ -1,4 +1,4 @@
-export interface Notice {
+export interface INotice {
   id: number;
   species: string;
   category: string;

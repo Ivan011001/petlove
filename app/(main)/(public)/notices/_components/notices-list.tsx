@@ -1,8 +1,8 @@
-import { Notice } from "@/types/notice";
+import { INotice } from "@/types/notice";
 import NoticesItem from "./notices-item";
 
 interface INoticesListProps {
-  notices: Notice[];
+  notices: INotice[];
 }
 
 const NoticesList = ({ notices }: INoticesListProps) => {
