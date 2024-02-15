@@ -91,7 +91,7 @@ const NoticesPage = async ({
       <section className="p-5 md:py-10 md:px-8 lg:px-10 rounded-3xl bg-[#FFF4DF]">
         <NoticesFilters />
       </section>
-      <div className="mb-11 md:mb-[60px]">
+      <div className="mb-11 md:mb-[60px] mt-10 md:mt-8 lg:mt-8">
         <NoticesList notices={data} />
       </div>
       <ViewPagination meta={meta} />
