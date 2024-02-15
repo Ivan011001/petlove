@@ -1,6 +1,6 @@
-import { News } from "./news";
+import { INews } from "./news";
 import { IFriend } from "./friend";
 import { INotice } from "./notice";
 import { IMetaPagination } from "./pagination-meta";
 
-export type { News, INotice, IFriend, IMetaPagination };
+export type { INews, INotice, IFriend, IMetaPagination };

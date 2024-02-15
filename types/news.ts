@@ -1,4 +1,4 @@
-export interface News {
+export interface INews {
   id: number;
   imgUrl: string;
   title: string;

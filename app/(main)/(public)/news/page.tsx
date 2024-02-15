@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/services";
 
-import type { News, IMetaPagination } from "@/types";
+import type { INews, IMetaPagination } from "@/types";
 
 import Title from "@/components/title";
 
@@ -15,7 +15,7 @@ const getAllNews = async ({
   page?: number;
   search?: string;
 }): Promise<{
-  data: News[];
+  data: INews[];
   meta: IMetaPagination;
 }> => {
   try {
