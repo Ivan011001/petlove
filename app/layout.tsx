@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "700", "800"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://petlove-seven.vercel.app/"),
   title: {
     template: "%s | Petlove",
     default: "Petlove",
@@ -20,7 +21,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Petlove",
-    description: "Discover everething about your little friends! Join Petlove.",
+    description:
+      "Discover everething about your little friends! Join Petlove and find out everything related to pets around the globe!",
+
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 800,
+        height: 600,
+      },
+    ],
   },
 };
 
