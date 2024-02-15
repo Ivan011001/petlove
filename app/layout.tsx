@@ -6,7 +6,10 @@ import { ThemeProvider } from "@/providers/theme-provider";
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "700", "800"] });
 
 export const metadata: Metadata = {
-  title: "Petlove",
+  title: {
+    template: "%s | Petlove",
+    default: "Petlove",
+  },
   description: "Discover everething about your little friends! Join Petlove.",
   icons: {
     icon: [
@@ -14,6 +17,10 @@ export const metadata: Metadata = {
         url: "/icon.svg",
       },
     ],
+  },
+  openGraph: {
+    title: "Petlove",
+    description: "Discover everething about your little friends! Join Petlove.",
   },
 };
 
