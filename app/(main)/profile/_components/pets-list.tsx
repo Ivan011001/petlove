@@ -65,10 +65,13 @@ const PetsList = () => {
         </Button>
       </div>
 
-      <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap gap-[14px]">
+      <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
         {pets.map((pet) => {
           return (
-            <li key={pet.id} className="md:max-w-[305px] md:flex-grow">
+            <li
+              key={pet.id}
+              className="md:max-w-[305px] md:flex-grow lg:max-w-full"
+            >
               <PetsItem pet={pet} />
             </li>
           );
