@@ -33,13 +33,13 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
   ];
 
   return (
-    <div className="w-full relative p-4 pr-[46px] md:py-[22px] md:pl-4 md:pr-[27px] border rounded-2xl md:rounded-[20px] border-neutral-800 border-opacity-10">
-      <button className="group absolute top-3 right-3 w-[30px] h-[30px] md:w-8 md:h-8 bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300">
+    <div className="w-full relative p-4 pr-[46px] md:py-[22px] md:pl-4 md:pr-[27px] lg:py-[20px] lg:pl-[20px] lg:pr-[62px] border rounded-2xl md:rounded-[20px] border-neutral-800 border-opacity-10">
+      <button className="group absolute top-3 right-3 w-[30px] h-[30px] md:w-8 md:h-8 lg:h-[38px] lg:w-[38px] bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300">
         <Trash2 className="h-4 w-4 stroke-accent group-hover:stroke-yellow-50 transition-all duration-300" />
       </button>
 
-      <div className="flex gap-[14px]">
-        <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] flex-shrink-0">
+      <div className="flex lg:items-center gap-[14px] lg:gap-[25px]">
+        <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] flex-shrink-0">
           <Image
             className="rounded-full"
             src={imgURL}
