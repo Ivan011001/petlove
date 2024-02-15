@@ -34,15 +34,20 @@ const SelectFilter = ({ label, value, param }: ISelectFilterProps) => {
     fetch();
   }, [value]);
 
-  const finalOptions = options.map((option: string) => {
-    return { value: option, label: capitalizeWord(option) };
-  });
+  const finalOptions = [
+    { value: "all", label: "All" },
+    ...options.map((option: string) => ({
+      value: option,
+      label: capitalizeWord(option),
+    })),
+  ];
 
   const onHandleChange = (term: string) => {
     const params = new URLSearchParams(searchParams);
 
     params.set("page", "1");
-    if (term) {
+
+    if (term && term !== "all") {
       params.set(param, term);
     } else {
       params.delete(param);
@@ -60,10 +65,12 @@ const SelectFilter = ({ label, value, param }: ISelectFilterProps) => {
       )}
       placeholder={label}
       options={finalOptions}
+      menuShouldScrollIntoView={false}
       styles={{
         control: (provided, _) => ({
           ...provided,
           border: "none",
+          boxShadow: "none",
           outline: "none",
           borderRadius: "24px",
           paddingTop: "5px",
