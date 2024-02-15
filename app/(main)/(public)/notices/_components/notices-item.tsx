@@ -70,6 +70,7 @@ const NoticesItem = ({ item }: NoticeProps) => {
           Learn more
         </Button>
 
+
         <Button className="group w-[46px] h-[46px]" variant="outline">
           <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
             <use xlinkHref="/sprite.svg#icon-heart"></use>
