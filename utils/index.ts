@@ -1,3 +1,4 @@
+import { capitalizeWord } from "./capitalizeWord";
 import { convertDate } from "./convertDate";
 
-export { convertDate };
+export { capitalizeWord, convertDate };

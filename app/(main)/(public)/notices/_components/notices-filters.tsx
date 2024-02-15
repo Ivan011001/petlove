@@ -21,12 +21,12 @@ const NoticesFilters = () => {
         </Suspense>
 
         <div className="flex justify-between gap-2 md:min-w-[356px] md:flex-grow">
-          <SelectFilter label="Category" value="categories" />
-          <SelectFilter label="By gender" value="sex" />
+          <SelectFilter label="Category" value="categories" param="category" />
+          <SelectFilter label="By gender" value="sex" param="gender" />
         </div>
 
         <div className="flex-grow ">
-          <SelectFilter label="By type" value="species" />
+          <SelectFilter label="By type" value="species" param="type" />
         </div>
 
         <Suspense>

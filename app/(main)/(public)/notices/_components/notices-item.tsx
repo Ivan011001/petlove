@@ -18,14 +18,15 @@ const NoticesItem = ({ item }: NoticeProps) => {
     category,
     comment,
   } = item;
+
   return (
     <div className="flex flex-col bg-white p-6 rounded-2xl box-border">
       <Image
         src={imgURL}
         alt={title}
         className="mb-6 w-[287px] h-[178px] object-cover md:w-[294px] lg:w-[315px] rounded-2xl"
-        width={287}
-        height={178}
+        width={315}
+        height={294}
       />
       <div className="flex justify-between mb-2 items-center">
         <h3 className="text-xl text-[#2B2B2A] font-bold">{title}</h3>
@@ -69,8 +70,9 @@ const NoticesItem = ({ item }: NoticeProps) => {
           Learn more
         </Button>
 
-        <Button className="bg-[#FFF4DF]">
-          <svg className="w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent">
+
+        <Button className="group w-[46px] h-[46px]" variant="outline">
+          <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
             <use xlinkHref="/sprite.svg#icon-heart"></use>
           </svg>
         </Button>

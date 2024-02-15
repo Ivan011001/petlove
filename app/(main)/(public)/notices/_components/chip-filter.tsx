@@ -27,6 +27,7 @@ const ChipFilter = ({ value, label }: IChipFilterProps) => {
     const value = event.target.value;
     const params = new URLSearchParams(searchParams);
 
+    params.set("page", "1");
     if (checked) {
       params.set(value, "true");
     } else {
@@ -41,7 +42,7 @@ const ChipFilter = ({ value, label }: IChipFilterProps) => {
     <label
       className={cn(
         "p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex cursor-pointer",
-        isChecked && "bg-accent text-white"
+        isChecked && "text-white bg-accent"
       )}
     >
       <input
