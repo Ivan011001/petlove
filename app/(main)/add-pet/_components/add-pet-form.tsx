@@ -16,7 +16,7 @@ interface IAddPetFormValues {
   imgURL: string;
   species: string;
   birthday: string;
-  type: string;
+  sex: string;
 }
 
 const AddPetForm = () => {
@@ -26,7 +26,7 @@ const AddPetForm = () => {
     imgURL: "",
     species: "",
     birthday: "",
-    type: "",
+    sex: "",
   };
 
   return (
@@ -38,27 +38,85 @@ const AddPetForm = () => {
         actions.resetForm();
       }}
     >
-      {({ errors, touched, isValid, dirty }) => (
+      {({ errors, touched, isValid, dirty, values }) => (
         <Form className="flex flex-col">
           <ul className="flex gap-2 items-center mb-2">
-            <li className="w-8 h-8 md:w-10 md:h-10 p-1.5 bg-rose-500 bg-opacity-10 rounded-full flex justify-center items-center">
-              <svg className="stroke-rose-500">
-                <use xlinkHref="/sprite.svg#icon-female"></use>
-              </svg>
+            <li>
+              <label
+                className={cn(
+                  "cursor-pointer group w-8 h-8 md:w-10 md:h-10 p-1.5 bg-rose-500 bg-opacity-10 rounded-full flex justify-center items-center transition-all duration-300 hover:bg-opacity-100",
+                  values.sex === "female" && "bg-opacity-100"
+                )}
+              >
+                <Field
+                  type="radio"
+                  name="sex"
+                  value="female"
+                  className="hidden"
+                />
+
+                <svg
+                  className={cn(
+                    "h-5 w-5 md:h-6 md:w-6 stroke-rose-500 transition-all duration-300 group-hover:stroke-white",
+                    values.sex === "female" && "stroke-white"
+                  )}
+                >
+                  <use xlinkHref="/sprite.svg#icon-female"></use>
+                </svg>
+              </label>
             </li>
 
-            <li className="w-8 h-8 md:w-10 md:h-10 p-1.5 bg-blue-400 bg-opacity-10 rounded-full flex justify-center items-center">
-              <svg className="stroke-blue-400">
-                <use xlinkHref="/sprite.svg#icon-male"></use>
-              </svg>
+            <li>
+              <label
+                className={cn(
+                  "cursor-pointer group w-8 h-8 md:w-10 md:h-10 p-1.5 bg-blue-400 bg-opacity-10 rounded-full flex justify-center items-center transition-all duration-300 hover:bg-opacity-100",
+                  values.sex === "male" && "bg-opacity-100"
+                )}
+              >
+                <Field
+                  type="radio"
+                  name="sex"
+                  value="male"
+                  className="hidden"
+                />
+
+                <svg
+                  className={cn(
+                    "h-5 w-5 md:h-6 md:w-6 stroke-blue-400 transition-all duration-300 group-hover:stroke-white",
+                    values.sex === "male" && "stroke-white"
+                  )}
+                >
+                  <use xlinkHref="/sprite.svg#icon-male"></use>
+                </svg>
+              </label>
             </li>
 
-            <li className="w-8 h-8 md:w-10 md:h-10 p-1.5 bg-yellow-50 rounded-full flex justify-center items-center">
-              <svg className="fill-accent">
-                <use xlinkHref="/sprite.svg#icon-duomale"></use>
-              </svg>
+            <li>
+              <label
+                className={cn(
+                  "cursor-pointer group w-8 h-8 md:w-10 md:h-10 p-1.5 bg-yellow-50 rounded-full flex justify-center items-center transition-all duration-300 hover:bg-accent",
+                  values.sex === "multiple" && "bg-accent"
+                )}
+              >
+                <Field
+                  type="radio"
+                  name="sex"
+                  value="multiple"
+                  className="hidden"
+                />
+
+                <svg
+                  className={cn(
+                    "h-5 w-5 md:h-6 md:w-6 fill-amber-400 transition-all duration-300 group-hover:fill-white",
+                    values.sex === "multiple" && "fill-white"
+                  )}
+                >
+                  <use xlinkHref="/sprite.svg#icon-duomale"></use>
+                </svg>
+              </label>
             </li>
           </ul>
+
           <div className="h-[68px] w-[68px] md:h-[86px] md:w-[86px] rounded-full bg-yellow-50 self-center flex justify-center items-center mb-4 md:mb-3">
             <svg className="h-[34px] w-[34px] md:w-[44px] md:h-[44px] fill-accent">
               <use xlinkHref="/sprite.svg#icon-paw"></use>
@@ -69,7 +127,7 @@ const AddPetForm = () => {
               <div className="flex gap-2">
                 <Field
                   className={cn(
-                    "w-full py-[9px] px-3 md:py-3 lg:py-4 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base",
+                    "w-full py-[9px] px-3 md:py-3 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base",
                     touched.imgURL
                       ? errors.imgURL
                         ? "border-red-500 border-opacity-100"
