@@ -30,7 +30,7 @@ const AddPetForm = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const species = await getOptions("species");
+      const species: string[] = await getOptions("species");
       setSpeciesOptions(species);
     };
 
