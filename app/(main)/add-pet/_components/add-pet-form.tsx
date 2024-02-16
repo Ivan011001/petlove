@@ -36,7 +36,6 @@ const AddPetForm = () => {
 
     fetch();
   }, []);
-
   const initialValues: IAddPetFormValues = {
     title: "",
     name: "",
