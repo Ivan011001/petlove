@@ -2,7 +2,7 @@
 
 import { axiosInstance } from "@/services";
 
-export const getOptions = async (type: string) => {
+export const getOptions = async (type: string): Promise<string[]> => {
   try {
     const response = await axiosInstance.get(`/notices/${type}`);
 
