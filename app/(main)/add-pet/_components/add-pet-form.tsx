@@ -26,12 +26,12 @@ interface IAddPetFormValues {
 }
 
 const AddPetForm = () => {
-  const [speciesOptions, setSpeciesOptions] = useState<string[]>([]);
+  const [speciesOptions, setSpeciesOptions] = useState<[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
       const species = await getOptions("species");
-      setSpeciesOptions(species as string[]);
+      setSpeciesOptions(species);
     };
 
     fetch();
