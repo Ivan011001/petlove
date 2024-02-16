@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import Link from "next/link";
 
 import { Formik, Form, Field } from "formik";
@@ -9,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { addPetSchema } from "@/schemas";
 
 import { cn } from "@/lib/utils";
+
+import { getOptions } from "@/data";
+
+import { capitalizeWord, validateBirthday } from "@/utils";
 
 interface IAddPetFormValues {
   title: string;
@@ -20,6 +26,16 @@ interface IAddPetFormValues {
 }
 
 const AddPetForm = () => {
+  const [speciesOptions, setSpeciesOptions] = useState<[]>([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const species = await getOptions("species");
+      setSpeciesOptions(species);
+    };
+
+    fetch();
+  }, []);
   const initialValues: IAddPetFormValues = {
     title: "",
     name: "",
@@ -28,6 +44,14 @@ const AddPetForm = () => {
     birthday: "",
     sex: "",
   };
+
+  const finalOptions = [
+    { value: "", label: "Type of pet" },
+    ...speciesOptions.map((specie) => ({
+      value: specie,
+      label: capitalizeWord(specie),
+    })),
+  ];
 
   return (
     <Formik
@@ -197,25 +221,67 @@ const AddPetForm = () => {
             </div>
 
             <div className="flex gap-2">
-              <Field
-                id="name"
-                name="name"
-                placeholder="Type of pet"
-                as="select"
-                className="w-full py-3 px-3 lg:py-4 lg:px-4 border rounded-full border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base"
-              >
-                <option>Type of pet</option>
-              </Field>
+              <div className="flex-grow w-full">
+                <div className="relative">
+                  <Field
+                    className={cn(
+                      "w-full py-3 px-3 lg:py-4 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base",
+                      touched.birthday
+                        ? errors.birthday
+                          ? "border-red-500 border-opacity-100"
+                          : "border-green-500 border-opacity-100"
+                        : ""
+                    )}
+                    id="birthday"
+                    name="birthday"
+                    placeholder="0000-00-00"
+                    validate={validateBirthday}
+                  />
 
-              <Field
-                id="name"
-                name="name"
-                placeholder="Type of pet"
-                as="select"
-                className="w-full py-3 px-3 lg:py-4 lg:px-4 border rounded-full border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base"
-              >
-                <option>Type of pet</option>
-              </Field>
+                  <svg className="absolute top-[50%] right-3 translate-y-[-50%] w-[18px] h-[18px] md:w-5 md:h-5 stroke-neutral-800 fill-none">
+                    <use xlinkHref="/sprite.svg#icon-calendar"></use>
+                  </svg>
+                </div>
+
+                {touched.birthday && errors.birthday && (
+                  <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
+                    {errors.birthday}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex-grow w-full">
+                <div className="relative">
+                  <Field
+                    className={cn(
+                      "rounded-full w-full py-3 px-3 lg:py-4 lg:px-4 border border-neutral-800 border-opacity-20 transition-all duration-300 outline-none focus:border-accent placeholder:text-sm md:placeholder:text-base text-sm md:text-base text-neutral-800",
+                      touched.species
+                        ? errors.species
+                          ? "border-red-500 border-opacity-100"
+                          : "border-green-500 border-opacity-100"
+                        : ""
+                    )}
+                    id="species"
+                    name="species"
+                    placeholder="Type fo pet"
+                    as="select"
+                  >
+                    {finalOptions?.map(({ value, label }) => {
+                      return (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      );
+                    })}
+                  </Field>
+                </div>
+
+                {touched.species && errors.species && (
+                  <p className="mt-[2px] md:mt-1 text-red-500 text-[10px] pl-3 md:pl-4 font-medium leading-none md:leading-tight">
+                    {errors.species}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
