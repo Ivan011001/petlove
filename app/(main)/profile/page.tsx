@@ -7,6 +7,7 @@ import { current } from "@/state/auth/authOperations";
 import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
 import LogOutButton from "./_components/log-out-button";
+import RadioLink from "./_components/radio-link";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -48,6 +49,10 @@ const ProfilePage = () => {
         </div>
 
         <LogOutButton />
+      </section>
+      <section>
+        <RadioLink message="My favorite pets" path="/profile/favorites" />
+        <RadioLink message="Viewed" path="/profile/viewed" />
       </section>
     </div>
   );
