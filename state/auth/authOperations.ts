@@ -7,6 +7,11 @@ export interface ISignup {
   password: string;
 }
 
+export interface ISignin {
+  email: string;
+  password: string;
+}
+
 const token = {
   set(token: string) {
     axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -35,7 +40,23 @@ export const signup = createAsyncThunk(
   }
 );
 
-// export const signin = createAsyncThunk("auth/signin");
+export const signin = createAsyncThunk(
+  "auth/signin",
+  async ({ email, password }: ISignin, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post("/auth/signin", {
+        email,
+        password,
+      });
+
+      token.set(data.accessToken);
+
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logout = createAsyncThunk(
   "auth/logout",
