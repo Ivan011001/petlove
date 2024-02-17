@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { INotice } from "@/types";
 import Image from "next/image";
 import LearnMoreModal from "./learn-more-modal";
-import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "@/state/auth/authSelectors";
 import AttentionModal from "./attention-modal";
+import { useState } from "react";
+import { useAppSelector } from "@/state/hooks";
 
 interface NoticeProps {
   item: INotice;
@@ -25,7 +25,15 @@ const NoticesItem = ({ item }: NoticeProps) => {
     comment,
   } = item;
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  const handleOpenModal = () => {
+    if (!isLoggedIn) {
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <div className="flex flex-col bg-white p-6 rounded-2xl box-border">
@@ -75,16 +83,18 @@ const NoticesItem = ({ item }: NoticeProps) => {
         {comment}
       </p>
       <div className="flex gap-2.5">
-        {isLoggedIn ? <LearnMoreModal item={item} /> : <AttentionModal />}
-        <Button
+        <LearnMoreModal item={item} />
+        {/* <Button
           type="button"
           className="group w-[46px] h-[46px]"
           variant="outline"
+          onClick={handleOpenModal}
         >
           <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
             <use xlinkHref="/sprite.svg#icon-heart"></use>
           </svg>
-        </Button>
+        </Button> */}
+        {!isLoggedIn && <AttentionModal />}
       </div>
     </div>
   );
