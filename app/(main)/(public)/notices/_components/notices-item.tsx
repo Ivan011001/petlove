@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { INotice } from "@/types";
 import Image from "next/image";
 import LearnMoreModal from "./learn-more-modal";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "@/state/auth/authSelectors";
+import AttentionModal from "./attention-modal";
 
 interface NoticeProps {
   item: INotice;
@@ -21,6 +24,8 @@ const NoticesItem = ({ item }: NoticeProps) => {
     category,
     comment,
   } = item;
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <div className="flex flex-col bg-white p-6 rounded-2xl box-border">
@@ -70,7 +75,7 @@ const NoticesItem = ({ item }: NoticeProps) => {
         {comment}
       </p>
       <div className="flex gap-2.5">
-        <LearnMoreModal item={item} />
+        {isLoggedIn ? <LearnMoreModal item={item} /> : <AttentionModal />}
         <Button
           type="button"
           className="group w-[46px] h-[46px]"
