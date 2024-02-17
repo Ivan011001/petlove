@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { registerSchema } from "@/schemas";
+import { useAppDispatch } from "@/state/hooks";
+import { ISignup, signup } from "@/state/auth/authOperations";
 
 interface IRegistratiomFormValues {
   name: string;
@@ -20,6 +22,7 @@ interface IRegistratiomFormValues {
 const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useAppDispatch();
 
   const initialValues: IRegistratiomFormValues = {
     name: "",
@@ -40,11 +43,16 @@ const RegistrationForm = () => {
     setShowConfirmPassword((prev) => !prev);
   };
 
+  const onSubmit = async (values: ISignup) => {
+    const { name, email, password } = values;
+    await dispatch(signup({ name, email, password }));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={registerSchema}
-      onSubmit={(values, actions) => {}}
+      onSubmit={onSubmit}
     >
       {({ errors, touched, isValid, dirty }) => (
         <Form className="flex flex-col gap-10 lg:gap-[64px]">
