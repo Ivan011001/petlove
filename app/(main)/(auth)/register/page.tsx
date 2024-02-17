@@ -1,9 +1,10 @@
+"use client";
 import Link from "next/link";
 
 import RegistrationImage from "./_components/registration-image";
 import RegistrationForm from "./_components/registration-form";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className="container min-h-full flex flex-col lg:flex-row gap-2.5 md:gap-4 lg:gap-8 pb-5">
       <section className="flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full h-[280px] sm:max-w-[335px] md:h-[302px] md:max-w-[704px] lg:h-full mx-auto">
@@ -37,4 +38,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

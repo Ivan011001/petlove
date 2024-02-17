@@ -1,11 +1,8 @@
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Registration",
-};
+"use client";
+import StoreProvider from "@/providers/store-provider";
 
 const RegisterLayout = ({ children }: { children: React.ReactNode }) => {
-  return children;
+  return <StoreProvider>{children}</StoreProvider>;
 };
 
 export default RegisterLayout;
