@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useAppDispatch } from "@/state/hooks";
+
+import { addPet } from "@/state/pets/petsOperations";
 
 import Link from "next/link";
 
@@ -16,7 +19,7 @@ import { getOptions } from "@/data";
 
 import { capitalizeWord, validateBirthday } from "@/utils";
 
-interface IAddPetFormValues {
+export interface IAddPetFormValues {
   title: string;
   name: string;
   imgURL: string;
@@ -26,6 +29,7 @@ interface IAddPetFormValues {
 }
 
 const AddPetForm = () => {
+  const dispatch = useAppDispatch();
   const [speciesOptions, setSpeciesOptions] = useState<[]>([]);
 
   useEffect(() => {
@@ -36,6 +40,7 @@ const AddPetForm = () => {
 
     fetch();
   }, []);
+
   const initialValues: IAddPetFormValues = {
     title: "",
     name: "",
@@ -53,6 +58,13 @@ const AddPetForm = () => {
     })),
   ];
 
+  // const onSubmit = (values, actions) => {
+  //   actions.setSubmitting(false);
+  //   actions.resetForm();
+
+  //   dispatch(addPet(values));
+  // };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -60,6 +72,8 @@ const AddPetForm = () => {
       onSubmit={(values, actions) => {
         actions.setSubmitting(false);
         actions.resetForm();
+
+        dispatch(addPet(values));
       }}
     >
       {({ errors, touched, isValid, dirty, values }) => (

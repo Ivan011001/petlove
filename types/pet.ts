@@ -1,12 +1,10 @@
 export interface IPet {
-  id: number;
+  id: string;
   species: string;
   title: string;
   name: string;
   birthday: string;
   sex: string;
   imgURL: string;
+  ownerId: string;
 }
-
-//   ownerId  Int?
-//   owner    User?  @relation(fields: [ownerId], references: [id])
