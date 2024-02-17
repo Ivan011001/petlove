@@ -8,6 +8,8 @@ import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
 import LogOutButton from "./_components/log-out-button";
 import RadioLink from "./_components/radio-link";
+import StoreProvider from "@/providers/store-provider";
+import ProfileImage from "./_components/profile-image";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -30,19 +32,13 @@ const ProfilePage = () => {
             <use xlinkHref="/sprite.svg#icon-edit"></use>
           </svg>
         </button>
-        <div className="flex flex-col items-center gap-2 mb-[28px] md:mb-5">
-          <div className="w-[94px] md:w-[110px] h-[94px] md:h-[110px] bg-yellow-50 rounded-full flex justify-center items-center">
-            <svg className="w-10 md:w-[50px] h-10 md:h-[50px] fill-accent stroke-accent">
-              <use xlinkHref="/sprite.svg#icon-user"></use>
-            </svg>
-          </div>
-
-          <button className="text-neutral-800 text-xs font-medium underline leading-none hover:text-accent transition-all duration-300">
-            Ulpoad photo
-          </button>
-        </div>
+        <StoreProvider>
+          <ProfileImage />
+        </StoreProvider>
         <div className="mb-10">
-          <ProfileForm />
+          <StoreProvider>
+            <ProfileForm />
+          </StoreProvider>
         </div>
         <div className="mb-5 lg:mb-10">
           <PetsList />

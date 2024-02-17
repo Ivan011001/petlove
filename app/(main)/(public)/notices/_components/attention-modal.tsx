@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -16,8 +15,14 @@ const AttentionModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="py-[14px] flex-grow text-sm font-inherit font-medium w-[231px]">
-          Learn more
+        <Button
+          type="button"
+          className="group w-[46px] h-[46px]"
+          variant="outline"
+        >
+          <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
+            <use xlinkHref="/sprite.svg#icon-heart"></use>
+          </svg>
         </Button>
       </DialogTrigger>
       <DialogContent className="container px-5 py-10 md:py-[60px] md:px-[60px] max-w-[335px] md:max-w-[466px]">
