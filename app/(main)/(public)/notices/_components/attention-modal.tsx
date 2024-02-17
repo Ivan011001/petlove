@@ -16,7 +16,9 @@ const AttentionModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Learn more</Button>
+        <Button className="py-[14px] flex-grow text-sm font-inherit font-medium w-[231px]">
+          Learn more
+        </Button>
       </DialogTrigger>
       <DialogContent className="container px-5 py-10 md:py-[60px] md:px-[60px] max-w-[335px] md:max-w-[466px]">
         <DialogHeader>
