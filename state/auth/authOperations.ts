@@ -73,11 +73,17 @@ export const logout = createAsyncThunk(
 
 export const current = createAsyncThunk(
   "auth/current",
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue, getState }) => {
+    const state: any = getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return rejectWithValue("Not Authorized");
+    }
+
+    token.set(persistedToken);
+
     try {
       const { data } = await axiosInstance.get("/users/current");
-
-      console.log(data);
 
       return data;
     } catch (error: any) {

@@ -14,6 +14,7 @@ const navList = [
   { title: "News", link: "/news" },
   { title: "Find Pet", link: "/notices" },
   { title: "Our Friends", link: "/friends" },
+  { title: "Profile", link: "/profile" },
 ];
 
 const Nav = ({ light }: INavProps) => {
@@ -27,7 +28,8 @@ const Nav = ({ light }: INavProps) => {
             key={nav.link}
             className={cn(
               "w-28 lg:w-auto hover:border-amber-400 transition-all duration-300 py-[15px] lg:px-5 rounded-3xl border border-neutral-800 border-opacity-20 justify-center items-center gap-2.5 inline-flex",
-              light && "lg:border-white lg:border-opacity-40 hover:border-white",
+              light &&
+                "lg:border-white lg:border-opacity-40 hover:border-white",
               path === nav.link && "border-amber-400 border-opacity-100"
             )}
             href={nav.link}
