@@ -1,15 +1,14 @@
 "use client";
 
+import PrivateRoute from "@/providers/private-route";
 import StoreProvider from "@/providers/store-provider";
 
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "Profile",
-// };
-
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
-  return <StoreProvider>{children}</StoreProvider>;
+  return (
+    <StoreProvider>
+      <PrivateRoute>{children}</PrivateRoute>
+    </StoreProvider>
+  );
 };
 
 export default ProfileLayout;

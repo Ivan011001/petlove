@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 
 import { Plus } from "lucide-react";
@@ -57,12 +59,15 @@ const PetsList = () => {
           My pets
         </h3>
 
-        <Button className="group px-4 py-2.5 md:px-5 md:py-2.5 flex justify-center items-center gap-1">
+        <Link
+          href="/add-pet"
+          className="bg-accent rounded-3xl group px-4 py-2.5 md:px-5 md:py-2.5 flex justify-center items-center gap-1 hover:bg-yellow-50 duration-300 transition-all"
+        >
           <p className="group-hover:text-accent text-white text-sm font-medium leading-none duration-300 transition-all">
             Add pet
           </p>
-          <Plus className="h-[18px] w-[18px] group-hover:stroke-accent" />
-        </Button>
+          <Plus className="stroke-white h-[18px] w-[18px] group-hover:stroke-accent duration-300 transition-all" />
+        </Link>
       </div>
 
       <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
