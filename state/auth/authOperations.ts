@@ -7,6 +7,15 @@ export interface ISignup {
   password: string;
 }
 
+const token = {
+  set(token: string) {
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axiosInstance.defaults.headers.common.Authorization = "";
+  },
+};
+
 export const signup = createAsyncThunk(
   "auth/signup",
   async ({ name, email, password }: ISignup, { rejectWithValue }) => {
@@ -16,6 +25,9 @@ export const signup = createAsyncThunk(
         email,
         password,
       });
+
+      token.set(data.accessToken);
+
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message);
@@ -25,7 +37,18 @@ export const signup = createAsyncThunk(
 
 // export const signin = createAsyncThunk("auth/signin");
 
-// export const logout = createAsyncThunk("auth/logout");
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      await axiosInstance.post("/auth/logout");
+
+      token.unset();
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // export const current = createAsyncThunk("auth/current");
 
