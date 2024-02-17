@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch } from "@/state/hooks";
 import { logout } from "@/state/auth/authOperations";
 

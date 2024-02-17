@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppSelector } from "@/state/hooks";
 import { selectUserName } from "@/state/auth/authSelectors";
 
