@@ -92,4 +92,17 @@ export const current = createAsyncThunk(
   }
 );
 
+export const uploadImage = createAsyncThunk(
+  "auth/upload",
+  async (imageURL: FormData | null, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post("/users/upload", imageURL);
+      console.log(data);
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 // export const refresh = createAsyncThunk("auth/refresh");

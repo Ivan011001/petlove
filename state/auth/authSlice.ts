@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { signup, logout, signin, current } from "./authOperations";
+import { signup, logout, signin, current, uploadImage } from "./authOperations";
 
 export interface IAuthState {
   name: string;
@@ -83,6 +83,14 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.isLoading = false;
       state.error = action.payload;
+    });
+    builder.addCase(uploadImage.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(uploadImage.fulfilled, (state, action) => {
+      state.imgURL = action.payload;
+      state.isLoading = false;
     });
   },
 });

@@ -7,3 +7,5 @@ export const selectIsLoading = (state: RootState) => state.auth.isLoading;
 export const selectUserName = (state: RootState) => state.auth.name;
 
 export const selectUserImage = (state: RootState) => state.auth.imgURL;
+
+export const selectUserEmail = (state: RootState) => state.auth.email;
