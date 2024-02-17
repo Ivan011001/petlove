@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { signup } from "./authOperations";
+import { signup, logout } from "./authOperations";
 
 export interface IAuthState {
   name: string;
@@ -35,9 +35,23 @@ const authSlice = createSlice({
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = null;
     });
 
     builder.addCase(signup.rejected, (state, action) => {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.token = "";
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = null;
+    });
+
+    builder.addCase(logout.rejected, (state, action) => {
       state.isLoggedIn = false;
       state.isLoading = false;
       state.error = action.payload;
