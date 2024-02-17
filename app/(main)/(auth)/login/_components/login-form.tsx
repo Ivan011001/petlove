@@ -10,12 +10,16 @@ import { loginSchema } from "@/schemas";
 
 import { cn } from "@/lib/utils";
 
+import { useAppDispatch } from "@/state/hooks";
+import { ISignin, ISignup, signin } from "@/state/auth/authOperations";
+
 interface ILoginFormValues {
   email: string;
   password: string;
 }
 
 const LoginForm = () => {
+  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues: ILoginFormValues = { email: "", password: "" };
@@ -25,14 +29,16 @@ const LoginForm = () => {
     setShowPassword((prev) => !prev);
   };
 
+  const onSubmit = async (values: ISignin) => {
+    const { email, password } = values;
+    await dispatch(signin({ email, password }));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={loginSchema}
-      onSubmit={(values, actions) => {
-        actions.setSubmitting(false);
-        actions.resetForm();
-      }}
+      onSubmit={onSubmit}
     >
       {({ errors, touched, isValid, dirty }) => (
         <Form className="flex flex-col gap-10 lg:gap-[64px]">
