@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { signup, logout, signin } from "./authOperations";
+import { signup, logout, signin, current } from "./authOperations";
 
 export interface IAuthState {
   name: string;
@@ -52,6 +52,21 @@ const authSlice = createSlice({
     });
 
     builder.addCase(signin.rejected, (state, action) => {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(current.fulfilled, (state, action) => {
+      state.email = action.payload.email;
+      state.name = action.payload.name;
+      state.imgURL = action.payload.profileUrl;
+      state.isLoggedIn = true;
+      state.isLoading = false;
+      state.error = null;
+    });
+
+    builder.addCase(current.rejected, (state, action) => {
       state.isLoggedIn = false;
       state.isLoading = false;
       state.error = action.payload;
