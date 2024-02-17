@@ -14,7 +14,6 @@ const navList = [
   { title: "News", link: "/news" },
   { title: "Find Pet", link: "/notices" },
   { title: "Our Friends", link: "/friends" },
-  { title: "Profile", link: "/profile" },
 ];
 
 const Nav = ({ light }: INavProps) => {

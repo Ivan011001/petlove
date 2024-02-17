@@ -1,3 +1,6 @@
+import { useAppSelector } from "@/state/hooks";
+import { selectUserName } from "@/state/auth/authSelectors";
+
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -7,6 +10,8 @@ interface IUserBarProps {
 }
 
 const UserBar = ({ light }: IUserBarProps) => {
+  const userName = useAppSelector(selectUserName);
+
   return (
     <div className="flex gap-2 items-center">
       <Link
@@ -20,11 +25,11 @@ const UserBar = ({ light }: IUserBarProps) => {
 
       <p
         className={cn(
-          "hidden md:block text-neutral-800 text-xl font-bold  leading-tight",
+          "hidden md:block text-neutral-800 text-xl font-bold leading-tight",
           light && "text-white"
         )}
       >
-        Name
+        {userName}
       </p>
     </div>
   );

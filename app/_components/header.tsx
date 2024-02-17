@@ -1,20 +1,33 @@
 "use client";
 
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
+import { selectIsLoggedIn } from "@/state/auth/authSelectors";
+import { current } from "@/state/auth/authOperations";
+
 import Logo from "@/components/logo";
 
 import Nav from "./nav";
-import UserNav from "./user-nav";
-import AuthNav from "./auth-nav";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import { cn } from "@/lib/utils";
+import UserNav from "./user-nav";
+import AuthNav from "./auth-nav";
+import LogoutButton from "./logout-button";
 
 interface IHeaderProps {
   light?: boolean;
 }
 
 const Header = ({ light }: IHeaderProps) => {
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    dispatch(current());
+  });
+
   return (
     <header
       className={cn(
@@ -26,13 +39,13 @@ const Header = ({ light }: IHeaderProps) => {
 
       <div className="flex items-center gap-[16px] lg:flex-row-reverse">
         <div className="flex items-center gap-[16px] lg:gap-0">
-          <div className="lg:hidden">
+          {isLoggedIn ? (
             <UserNav light={light} />
-          </div>
-          <div className="hidden lg:block">
-            <AuthNav />
-          </div>
-
+          ) : (
+            <div className="hidden lg:block">
+              <AuthNav />
+            </div>
+          )}
           <Sheet>
             <SheetTrigger asChild>
               <button>
@@ -52,7 +65,13 @@ const Header = ({ light }: IHeaderProps) => {
                   <Nav />
                 </div>
 
-                <AuthNav />
+                {isLoggedIn ? (
+                  <div className="md:hidden w-full">
+                    <LogoutButton />
+                  </div>
+                ) : (
+                  <AuthNav />
+                )}
               </div>
             </SheetContent>
           </Sheet>
