@@ -1,10 +1,20 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useEffect } from "react";
+import { useAppDispatch } from "@/state/hooks";
+import { current } from "@/state/auth/authOperations";
 
 import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
 import LogOutButton from "./_components/log-out-button";
 
 const ProfilePage = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
   return (
     <div className="container flex flex-col lg:flex-row gap-10">
       <section className="relative w-full lg:w-[520px] bg-white rounded-3xl md:rounded-[60px] pt-[54px] px-5 pb-10 md:p-[40px]">
@@ -36,12 +46,7 @@ const ProfilePage = () => {
         <div className="mb-5 lg:mb-10">
           <PetsList />
         </div>
-        {/* <Button
-          className="uppercase py-4 px-[28px] md:px-9 md:py-3.5"
-          variant="outline"
-        >
-          Log Out
-        </Button> */}
+
         <LogOutButton />
       </section>
     </div>
