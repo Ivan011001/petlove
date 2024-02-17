@@ -1,9 +1,9 @@
-import Header from "../_components/header";
+import HeaderWrapper from "../_components/header-wrapper";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Header />
+      <HeaderWrapper />
       <main>{children}</main>
     </>
   );
