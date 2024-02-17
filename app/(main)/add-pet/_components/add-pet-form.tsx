@@ -162,7 +162,10 @@ const AddPetForm = () => {
                   name="imgURL"
                   placeholder="Enter URL"
                 />
-                <Button className="group p-[10px] md:px-4 bg-yellow-50 rounded-3xl text-neutral-800 font-medium leading-none flex gap-1 md:gap-2 items-center hover:text-white hover:bg-accent">
+                <Button
+                  type="button"
+                  className="group p-[10px] md:px-4 bg-yellow-50 rounded-3xl text-neutral-800 font-medium leading-none flex gap-1 md:gap-2 items-center hover:text-white hover:bg-accent"
+                >
                   <span className="text-sx md:text-sm">Upload photo</span>
                   <svg className="w-4 h-4 fill-none stroke-accent group-hover:stroke-white transition-all duration-300">
                     <use xlinkHref="/sprite.svg#icon-upload"></use>

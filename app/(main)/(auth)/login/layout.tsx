@@ -1,6 +1,7 @@
 "use client";
 
 import StoreProvider from "@/providers/store-provider";
+import PublicRoute from "@/providers/public-route";
 
 // import { Metadata } from "next";
 
@@ -9,7 +10,11 @@ import StoreProvider from "@/providers/store-provider";
 // };
 
 const LoginLayout = ({ children }: { children: React.ReactNode }) => {
-  return <StoreProvider>{children}</StoreProvider>;
+  return (
+    <StoreProvider>
+      <PublicRoute>{children}</PublicRoute>
+    </StoreProvider>
+  );
 };
 
 export default LoginLayout;
