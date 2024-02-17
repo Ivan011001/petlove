@@ -1,57 +1,25 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-
 import { Plus } from "lucide-react";
 
 import PetsItem from "./pets-item";
 
 import { IPet } from "@/types";
+import { axiosInstance } from "@/services";
 
-interface IPetsListProps {
-  pets: IPet[];
-}
+const getPets = async (): Promise<IPet[]> => {
+  try {
+    const response = await axiosInstance.get("/pets");
 
-const pets = [
-  {
-    id: 1,
-    species: "dog",
-    title: "Golden Retriever Puppies",
-    name: "Max",
-    birthday: "2022-01-10",
-    sex: "male",
-    imgURL: "https://ftp.goit.study/img/pets/1.webp",
-  },
-  {
-    id: 2,
-    species: "fish",
-    title: "Colorful Betta Fish",
-    name: "Splash",
-    birthday: "2021-04-05",
-    sex: "unknown",
-    imgURL: "https://ftp.goit.study/img/pets/3.webp",
-  },
-  {
-    id: 3,
-    species: "fish",
-    title: "Colorful Betta Fish",
-    name: "Splash",
-    birthday: "2021-04-05",
-    sex: "unknown",
-    imgURL: "https://ftp.goit.study/img/pets/3.webp",
-  },
-  {
-    id: 4,
-    species: "fish",
-    title: "Colorful Betta Fish",
-    name: "Splash",
-    birthday: "2021-04-05",
-    sex: "unknown",
-    imgURL: "https://ftp.goit.study/img/pets/3.webp",
-  },
-];
+    return response.data;
+  } catch (error: any) {
+    return error.message;
+  }
+};
 
-const PetsList = () => {
+const PetsList = async () => {
+  const pets: IPet[] = await getPets();
+
   return (
     <div className="w-full flex flex-col gap-5">
       <div className="flex items-center justify-between">

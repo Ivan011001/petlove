@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import AddPetForm from "./_components/add-pet-form";
 import AddPetImage from "./_components/add-pet-image";
 
