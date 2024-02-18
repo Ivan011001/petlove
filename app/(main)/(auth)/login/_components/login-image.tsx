@@ -1,9 +1,10 @@
+import RectangleImage from "@/components/ui/rectangle-image";
 import Image from "next/image";
 
 const LoginImage = () => {
   return (
     <div className="w-full h-full relative overflow-hidden">
-      <Image
+      <RectangleImage
         className="w-[332px] h-[414px] top-[22px] left-[13px] object-contain absolute md:w-[572px] md:h-[715px] md:left-[106px] lg:left-10"
         src="https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65c4c80c7fc157c12e418353/img/rectangle-4561.svg"
         alt="Rectangle"
