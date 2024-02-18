@@ -1,23 +1,19 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "@/state/hooks";
-
 import { addPet } from "@/state/pets/petsOperations";
-
-import Link from "next/link";
 
 import { Formik, Form, Field } from "formik";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { addPetSchema } from "@/schemas";
-
-import { cn } from "@/lib/utils";
-
 import { getOptions } from "@/data";
-
 import { capitalizeWord, validateBirthday } from "@/utils";
+import { cn } from "@/lib/utils";
 
 export interface IAddPetFormValues {
   title: string;
@@ -31,6 +27,7 @@ export interface IAddPetFormValues {
 const AddPetForm = () => {
   const dispatch = useAppDispatch();
   const [speciesOptions, setSpeciesOptions] = useState<[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetch = async () => {
@@ -58,23 +55,19 @@ const AddPetForm = () => {
     })),
   ];
 
-  // const onSubmit = (values, actions) => {
-  //   actions.setSubmitting(false);
-  //   actions.resetForm();
+  const onSubmit = async (values: IAddPetFormValues, actions: any) => {
+    actions.setSubmitting(false);
+    actions.resetForm();
 
-  //   dispatch(addPet(values));
-  // };
+    await dispatch(addPet(values));
+    router.push("/profile");
+  };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={addPetSchema}
-      onSubmit={(values, actions) => {
-        actions.setSubmitting(false);
-        actions.resetForm();
-
-        dispatch(addPet(values));
-      }}
+      onSubmit={onSubmit}
     >
       {({ errors, touched, isValid, dirty, values }) => (
         <Form className="flex flex-col">
@@ -303,16 +296,17 @@ const AddPetForm = () => {
           </div>
 
           <div className="flex justify-end gap-2 items-center">
-            <Button
-              type="submit"
-              className="md:w-44 py-3 lg:py-4 bg-neutral-800 bg-opacity-5 text-neutral-800 hover:bg-accent hover:text-yellow-50"
+            <Link
+              href="/profile"
+              className="py-3 px-[34px] md:px-[67px] md:py-[14px] bg-neutral-800 bg-opacity-5 text-neutral-800 hover:bg-accent hover:text-yellow-50 rounded-3xl transition-all duration-300 text-sm md:text-base font-bold leading-none md:leading-tight"
             >
-              <Link href="/">Back</Link>
-            </Button>
+              Back
+            </Link>
+
             <Button
               disabled={!isValid || !dirty}
               type="submit"
-              className="md:w-44 py-3 lg:py-4"
+              className="py-3 px-[26px] md:px-[58px] md:py-[14px]"
             >
               Submit
             </Button>
