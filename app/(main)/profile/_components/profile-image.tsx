@@ -39,14 +39,19 @@ const ProfileImage = () => {
           </svg>
         )}
       </div>
-      <input
-        type="file"
-        name="imgURL"
-        accept="image/png, image/jpg"
-        onChange={handleFileChange}
-        className="text-neutral-800 text-xs font-medium underline leading-none hover:text-accent transition-all duration-300"
-      />
-      Upload photo
+      <label htmlFor="imgUpload" className="cursor-pointer">
+        <input
+          type="file"
+          id="imgUpload"
+          name="imgURL"
+          accept="image/png, image/jpg"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+        <span className="text-neutral-800 text-xs font-medium underline leading-none hover:text-accent transition-all duration-300">
+          Upload photo
+        </span>
+      </label>
     </div>
   );
 };
