@@ -40,10 +40,9 @@ const NoticesItem = ({ item }: NoticeProps) => {
       <Image
         src={imgURL}
         alt={title}
-        className="mb-6 w-[287px] h-[178px] object-cover md:w-[294px] lg:w-[315px] rounded-2xl"
         width={315}
-        height={294}
-        priority
+        height={178}
+        className="mb-6 w-[287px] h-[178px] object-cover md:w-[294px] lg:w-[315px] rounded-2xl"
       />
       <div className="flex justify-between mb-2 items-center">
         <h3 className="text-xl text-[#2B2B2A] font-bold">{title}</h3>

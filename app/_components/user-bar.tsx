@@ -28,9 +28,9 @@ const UserBar = ({ light }: IUserBarProps) => {
           <Image
             src={userAvatar}
             alt={userName}
-            width={50}
-            height={50}
-            className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] object-cover rounded-full"
+            width={40}
+            height={40}
+            className="w-[40px] h-[40px] md:w-[50px] md:h-[50px] lg:w-[50px] lg:h-[50px] object-cover rounded-full"
           />
         ) : (
           <svg className="w-5 h-5 md:w-6 md:h-6 fill-amber-400 stroke-amber-400">
