@@ -20,7 +20,7 @@ const Nav = ({ light }: INavProps) => {
   const path = usePathname();
 
   return (
-    <nav className="flex flex-col lg:flex-row justify-center items-start gap-2.5">
+    <nav className="flex flex-col lg:flex-row justify-center items-start gap-2.5 lg:mr-[167px]">
       {navList.map((nav) => {
         return (
           <Link
