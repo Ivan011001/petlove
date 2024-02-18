@@ -25,10 +25,8 @@ const Header = ({ light }: IHeaderProps) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(current());
-    }
-  }, [dispatch, isLoggedIn]);
+    dispatch(current());
+  }, [dispatch]);
 
   return (
     <header
