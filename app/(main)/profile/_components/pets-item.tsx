@@ -17,6 +17,8 @@ interface IPetsItemProps {
 const PetsItem = ({ pet }: IPetsItemProps) => {
   const { name, title, birthday, sex, species, imgURL, id } = pet;
 
+  const isAvatar = imgURL.length > 0;
+
   const description = [
     {
       title: "Name",
@@ -43,15 +45,23 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
       </StoreProvider>
 
       <div className="flex lg:items-center gap-[14px] lg:gap-[25px]">
-        <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] flex-shrink-0">
-          <Image
-            className="rounded-full"
-            src={imgURL}
-            alt={title}
-            width={90}
-            height={90}
-          />
-        </div>
+        {isAvatar ? (
+          <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] flex-shrink-0">
+            <Image
+              className="rounded-full"
+              src={imgURL}
+              alt={title}
+              width={90}
+              height={90}
+            />
+          </div>
+        ) : (
+          <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] flex-shrink-0 bg-yellow-50 rounded-full flex justify-center items-center">
+            <svg className="w-10 h-10 md:w-12 md:h-12 fill-accent">
+              <use xlinkHref="/sprite.svg#icon-paw"></use>
+            </svg>
+          </div>
+        )}
 
         <div className="flex flex-col gap-2 md:gap-3 min-w-[153px]">
           <h4 className="text-zinc-800 text-sm font-bold leading-none">
