@@ -27,11 +27,7 @@ const ProfilePage = () => {
             <use xlinkHref="/sprite.svg#icon-user"></use>
           </svg>
         </div>
-        <button className="absolute top-[18px] md:top-[40px] right-[20px] md:right-[40px] group p-2.5 bg-yellow-50 rounded-3xl hover:bg-accent transition-all duration-300">
-          <svg className="stroke-accent w-[18px] h-[18px] group-hover:stroke-yellow-50 transition-all duration-300">
-            <use xlinkHref="/sprite.svg#icon-edit"></use>
-          </svg>
-        </button>
+
         <StoreProvider>
           <ProfileImage />
         </StoreProvider>
