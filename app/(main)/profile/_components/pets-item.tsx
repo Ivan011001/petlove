@@ -48,7 +48,7 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
         {isAvatar ? (
           <div className="w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] flex-shrink-0">
             <Image
-              className="rounded-full"
+              className="rounded-full w-[66px] h-[66px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px] object-cover"
               src={imgURL}
               alt={title}
               width={90}
