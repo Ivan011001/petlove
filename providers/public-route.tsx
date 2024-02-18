@@ -14,8 +14,10 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(current());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(current());
+    }
+  }, [dispatch, isLoggedIn]);
 
   if (isLoggedIn) {
     redirect("/profile");
