@@ -120,4 +120,29 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const addToFavorites = createAsyncThunk(
+  "auth/addToFavorites",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post(`/notices/favorites/add/${id}`);
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addToViewed = createAsyncThunk(
+  "auth/addToViewed",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post(`/notices/viewed/add/${id}`);
+
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 // export const refresh = createAsyncThunk("auth/refresh");

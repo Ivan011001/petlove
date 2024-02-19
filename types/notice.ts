@@ -1,5 +1,5 @@
 export interface INotice {
-  id: number;
+  id: string;
   species: string;
   category: string;
   price: number;
@@ -11,4 +11,5 @@ export interface INotice {
   location: string;
   imgURL: string;
   popularity: number;
+  userIDs: string[];
 }

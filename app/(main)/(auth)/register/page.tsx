@@ -24,7 +24,7 @@ const RegisterPage = () => {
           </div>
 
           <p className="text-center text-neutral-800 text-opacity-50 text-xs md:text-sm font-medium leading-none md:leading-tight">
-            Already have an account??{" "}
+            Already have an account?{" "}
             <Link
               className="text-accent text-xs md:text-sm font-bold underline leading-none md:leading-tight transition-all duration-300 hover:text-neutral-800/50"
               href="/login"

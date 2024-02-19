@@ -7,6 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { addToFavorites, addToViewed } from "@/state/auth/authOperations";
+import { useAppDispatch } from "@/state/hooks";
 import { INotice } from "@/types";
 import { renderStars } from "@/utils/renderStart";
 import { StarIcon } from "lucide-react";
@@ -27,14 +29,25 @@ const LearnMoreModal = ({ item }: NoticeProps) => {
     species,
     category,
     comment,
+    id,
   } = item;
 
   const stars = renderStars(popularity);
 
+  const dispatch = useAppDispatch();
+  const handleAddToViewed = () => {
+    dispatch(addToViewed(id));
+  };
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites(id));
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="py-[14px] flex-grow text-sm font-inherit font-medium w-[231px]">
+        <Button
+          className="py-[14px] flex-grow text-sm font-inherit font-medium w-[231px]"
+          onClick={handleAddToViewed}
+        >
           Learn more
         </Button>
       </DialogTrigger>
@@ -99,7 +112,10 @@ const LearnMoreModal = ({ item }: NoticeProps) => {
           </p>
         </div>
         <DialogFooter className="flex gap-2.5 items-center">
-          <Button className="flex-grow group font-medium">
+          <Button
+            className="flex-grow group font-medium"
+            onClick={handleAddToFavorites}
+          >
             Add to
             <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
               <use xlinkHref="/sprite.svg#icon-heart"></use>
