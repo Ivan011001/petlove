@@ -7,6 +7,8 @@ import PetsItem from "./pets-item";
 import { IPet } from "@/types";
 import { axiosInstance } from "@/services";
 
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+
 const getPets = async (): Promise<IPet[]> => {
   try {
     const response = await axiosInstance.get("/pets");
@@ -38,18 +40,21 @@ const PetsList = async () => {
         </Link>
       </div>
 
-      <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
-        {pets.map((pet) => {
-          return (
-            <li
-              key={pet.id}
-              className="md:max-w-[305px] md:flex-grow lg:max-w-full"
-            >
-              <PetsItem pet={pet} />
-            </li>
-          );
-        })}
-      </ul>
+      <ScrollArea className="h-[260px] md:h-[150px] lg:h-[290px] w-full px-3">
+        <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
+          {pets.map((pet) => {
+            return (
+              <li
+                key={pet.id}
+                className="md:max-w-[305px] md:flex-grow lg:max-w-full"
+              >
+                <PetsItem pet={pet} />
+              </li>
+            );
+          })}
+        </ul>
+        <ScrollBar />
+      </ScrollArea>
     </div>
   );
 };
