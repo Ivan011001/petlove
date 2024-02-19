@@ -9,3 +9,5 @@ export const selectUserName = (state: RootState) => state.auth.name;
 export const selectUserImage = (state: RootState) => state.auth.imgURL;
 
 export const selectUserEmail = (state: RootState) => state.auth.email;
+
+export const selectUserPhone = (state: RootState) => state.auth.phone;

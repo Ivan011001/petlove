@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { signup, logout, signin, current, uploadImage } from "./authOperations";
+import {
+  signup,
+  logout,
+  signin,
+  current,
+  uploadImage,
+  updateUser,
+} from "./authOperations";
 
 export interface IAuthState {
   name: string;
   email: string;
   token: string;
+  phone: string;
   imgURL: string;
   isLoggedIn: boolean;
   error: string | unknown | null;
@@ -16,6 +24,7 @@ const initialState: IAuthState = {
   name: "",
   email: "",
   token: "",
+  phone: "",
   imgURL: "",
   isLoggedIn: false,
   error: null,
@@ -57,10 +66,23 @@ const authSlice = createSlice({
       state.error = action.payload;
     });
 
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.name = action.payload.name;
+      state.phone = action.payload.phone;
+      state.isLoading = false;
+      state.error = null;
+    });
+
+    builder.addCase(updateUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
     builder.addCase(current.fulfilled, (state, action) => {
       state.email = action.payload.email;
       state.name = action.payload.name;
       state.imgURL = action.payload.profileUrl;
+      state.phone = action.payload.phone;
       state.isLoggedIn = true;
       state.isLoading = false;
       state.error = null;
@@ -84,13 +106,15 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
-    builder.addCase(uploadImage.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+
     builder.addCase(uploadImage.fulfilled, (state, action) => {
       state.imgURL = action.payload;
       state.isLoading = false;
+    });
+
+    builder.addCase(uploadImage.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     });
   },
 });
