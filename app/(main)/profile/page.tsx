@@ -9,7 +9,7 @@ import PetsList from "./_components/pets-list";
 import LogOutButton from "./_components/log-out-button";
 import StoreProvider from "@/providers/store-provider";
 import ProfileImage from "./_components/profile-image";
-import LinkList from "./_components/link-list";
+import ListSection from "./_components/list-section";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +43,7 @@ const ProfilePage = () => {
         <LogOutButton />
       </section>
       <section>
-        <LinkList />
+        <ListSection />
       </section>
     </div>
   );
