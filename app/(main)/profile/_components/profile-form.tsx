@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { useAppSelector } from "@/state/hooks";
+import { useAppSelector, useAppDispatch } from "@/state/hooks";
 
-import { selectUserEmail, selectUserName } from "@/state/auth/authSelectors";
+import { updateUser } from "@/state/auth/authOperations";
+import {
+  selectUserEmail,
+  selectUserName,
+  selectUserPhone,
+} from "@/state/auth/authSelectors";
 
 import { Formik, Field, Form } from "formik";
 import { updateUserSchema } from "@/schemas";
@@ -15,14 +20,18 @@ interface IProfileFormValue {
 }
 
 const ProfileForm = () => {
+  const dispatch = useAppDispatch();
+
   const name = useAppSelector(selectUserName);
   const email = useAppSelector(selectUserEmail);
+  const phone = useAppSelector(selectUserPhone);
+
   const [isClientUsed, setIsClientUsed] = useState(false);
 
   const initialValues: IProfileFormValue = {
     name,
     email,
-    phone: "+380",
+    phone: phone || "+380",
   };
 
   const onFormActivate = () => {
@@ -33,7 +42,12 @@ const ProfileForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={updateUserSchema}
-      onSubmit={(values, actions) => {}}
+      onSubmit={async (values, actions) => {
+        const { name, phone } = values;
+
+        await dispatch(updateUser({ name, phone }));
+        setIsClientUsed((prev) => !prev);
+      }}
     >
       {({
         isSubmitting,
@@ -75,27 +89,16 @@ const ProfileForm = () => {
             {isClientUsed && (
               <button
                 type="submit"
-                disabled={!isValid || !dirty}
                 className={cn(
-                  "group p-2.5 bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300 cursor-pointer",
-                  !isValid || !dirty
-                    ? "cursor-default bg-red-50 hover:bg-red-50"
-                    : ""
+                  "group p-2.5 bg-yellow-50 rounded-3xl flex justify-center items-center hover:bg-accent transition-all duration-300 cursor-pointer"
                 )}
               >
                 <svg
                   className={cn(
-                    "stroke-accent w-[18px] h-[18px] group-hover:stroke-yellow-50 transition-all duration-300",
-                    !isValid || !dirty
-                      ? "stroke-red-500 group-hover:stroke-red-500"
-                      : ""
+                    "stroke-accent w-[18px] h-[18px] group-hover:stroke-yellow-50 transition-all duration-300"
                   )}
                 >
-                  {!isValid || !dirty ? (
-                    <use xlinkHref="/sprite.svg#icon-cross"></use>
-                  ) : (
-                    <use xlinkHref="/sprite.svg#icon-check"></use>
-                  )}
+                  <use xlinkHref="/sprite.svg#icon-check"></use>
                 </svg>
               </button>
             )}
@@ -111,6 +114,7 @@ const ProfileForm = () => {
                 name="name"
                 placeholder="Name"
                 disabled={!isClientUsed}
+                styles={{ all: "unset" }}
               />
 
               {touched.name && errors.name && (
@@ -135,6 +139,7 @@ const ProfileForm = () => {
                 name="phone"
                 placeholder="Phone"
                 disabled={!isClientUsed}
+                styles={{ all: "unset" }}
               />
 
               {touched.phone && errors.phone && (
