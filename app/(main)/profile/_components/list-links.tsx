@@ -8,7 +8,7 @@ interface LinkListProps {
 
 const ListLinks = ({ selected, onSelectedChange }: LinkListProps) => {
   return (
-    <ul className="flex items-center ">
+    <ul className="flex items-center mb-5">
       <li>
         <label
           className={cn(
