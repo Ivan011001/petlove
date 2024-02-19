@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-const LinkList = () => {
-  const [selected, setSelected] = useState<string | null>("favorites");
+interface LinkListProps {
+  selected: string;
+  onSelectedChange: (newSelected: string) => void;
+}
 
-  const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelected(event.target.value);
-  };
-
+const ListLinks = ({ selected, onSelectedChange }: LinkListProps) => {
   return (
     <ul className="flex items-center ">
       <li>
@@ -22,7 +21,8 @@ const LinkList = () => {
             name="list"
             className="hidden"
             value="favorites"
-            onChange={onHandleChange}
+            onChange={() => onSelectedChange("favorites")}
+            checked={selected === "favorites"}
           />
           <span
             className={cn(
@@ -47,7 +47,8 @@ const LinkList = () => {
             name="list"
             className="hidden"
             value="viewed"
-            onChange={onHandleChange}
+            onChange={() => onSelectedChange("viewed")}
+            checked={selected === "viewed"}
           />
           <span
             className={cn(
@@ -63,4 +64,4 @@ const LinkList = () => {
   );
 };
 
-export default LinkList;
+export default ListLinks;
