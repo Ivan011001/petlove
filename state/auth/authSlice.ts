@@ -7,7 +7,10 @@ import {
   current,
   uploadImage,
   updateUser,
+  addToFavorites,
+  addToViewed,
 } from "./authOperations";
+import { INotice } from "@/types";
 
 export interface IAuthState {
   name: string;
@@ -18,6 +21,8 @@ export interface IAuthState {
   isLoggedIn: boolean;
   error: string | unknown | null;
   isLoading: boolean;
+  favorites: INotice[];
+  viewed: INotice[];
 }
 
 const initialState: IAuthState = {
@@ -29,6 +34,8 @@ const initialState: IAuthState = {
   isLoggedIn: false,
   error: null,
   isLoading: false,
+  favorites: [],
+  viewed: [],
 };
 
 const authSlice = createSlice({
@@ -83,6 +90,8 @@ const authSlice = createSlice({
       state.name = action.payload.name;
       state.imgURL = action.payload.profileUrl;
       state.phone = action.payload.phone;
+      state.favorites = action.payload.favoritesIDs;
+      state.viewed = action.payload.viewedIDs;
       state.isLoggedIn = true;
       state.isLoading = false;
       state.error = null;
@@ -115,6 +124,26 @@ const authSlice = createSlice({
     builder.addCase(uploadImage.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    });
+    builder.addCase(addToFavorites.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(
+      addToFavorites.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.favorites.push(action.payload);
+      }
+    );
+    builder.addCase(addToViewed.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(addToViewed.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      state.viewed.push(action.payload);
     });
   },
 });
