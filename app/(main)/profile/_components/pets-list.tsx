@@ -1,26 +1,18 @@
+"use client";
+
+import { useAppSelector } from "@/state/hooks";
+import { selectPets } from "@/state/pets/petsSelectors";
+
 import Link from "next/link";
 
 import { Plus } from "lucide-react";
 
 import PetsItem from "./pets-item";
 
-import { IPet } from "@/types";
-import { axiosInstance } from "@/services";
-
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-const getPets = async (): Promise<IPet[]> => {
-  try {
-    const response = await axiosInstance.get("/pets");
-
-    return response.data;
-  } catch (error: any) {
-    return error.message;
-  }
-};
-
-const PetsList = async () => {
-  const pets: IPet[] = await getPets();
+const PetsList = () => {
+  const pets = useAppSelector(selectPets);
 
   return (
     <div className="w-full flex flex-col gap-5">
@@ -39,9 +31,24 @@ const PetsList = async () => {
           <Plus className="stroke-white h-[18px] w-[18px] group-hover:stroke-accent duration-300 transition-all" />
         </Link>
       </div>
-      {pets.length > 0 ? (
+      {pets.length <= 1 ? (
+        <>
+          <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
+            {pets.map((pet) => {
+              return (
+                <li
+                  key={pet.id}
+                  className="md:max-w-[305px] md:flex-grow lg:max-w-full"
+                >
+                  <PetsItem pet={pet} />
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      ) : (
         <ScrollArea className="h-[260px] md:h-[150px] lg:h-[290px] w-full px-3">
-          <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px] lg:h-[290px]">
+          <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px]">
             {pets.map((pet) => {
               return (
                 <li
@@ -55,33 +62,9 @@ const PetsList = async () => {
           </ul>
           <ScrollBar />
         </ScrollArea>
-      ) : (
-        <div></div>
       )}
     </div>
   );
 };
 
 export default PetsList;
-
-//  {
-//    pets.length > 0 ? (
-//      <ScrollArea className="h-[260px] md:h-[150px] lg:h-[290px] w-full px-3">
-//        <ul className="w-full flex flex-col justify-center md:flex-row md:flex-wrap lg:flex-col lg:flex-nowrap gap-[14px] lg:h-[290px]">
-//          {pets.map((pet) => {
-//            return (
-//              <li
-//                key={pet.id}
-//                className="md:max-w-[305px] md:flex-grow lg:max-w-full"
-//              >
-//                <PetsItem pet={pet} />
-//              </li>
-//            );
-//          })}
-//        </ul>
-//        <ScrollBar />
-//      </ScrollArea>
-//    ) : (
-//      <div></div>
-//    );
-//  }
