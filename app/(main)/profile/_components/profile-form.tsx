@@ -11,6 +11,7 @@ import {
 import { Formik, Field, Form } from "formik";
 import { updateUserSchema } from "@/schemas";
 
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 interface IProfileFormValue {
@@ -38,26 +39,21 @@ const ProfileForm = () => {
     setIsClientUsed((prev) => !prev);
   };
 
+  const onHandleSubmit = async (values: IProfileFormValue) => {
+    const { name, phone } = values;
+
+    await dispatch(updateUser({ name, phone }));
+    toast.success("You have successfully changed profile info!");
+    setIsClientUsed((prev) => !prev);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={updateUserSchema}
-      onSubmit={async (values, actions) => {
-        const { name, phone } = values;
-
-        await dispatch(updateUser({ name, phone }));
-        setIsClientUsed((prev) => !prev);
-      }}
+      onSubmit={onHandleSubmit}
     >
-      {({
-        isSubmitting,
-        dirty,
-        isValid,
-        touched,
-        errors,
-        setErrors,
-        setValues,
-      }) => (
+      {({ touched, errors, setErrors, setValues }) => (
         <Form>
           <button
             type="button"
