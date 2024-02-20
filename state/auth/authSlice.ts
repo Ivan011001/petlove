@@ -9,6 +9,7 @@ import {
   updateUser,
   addToFavorites,
   addToViewed,
+  removeFromFavorites,
 } from "./authOperations";
 import { INotice } from "@/types";
 
@@ -136,6 +137,21 @@ const authSlice = createSlice({
         state.favorites.push(action.payload);
       }
     );
+
+    builder.addCase(removeFromFavorites.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(
+      removeFromFavorites.fulfilled,
+      (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.favorites = state.favorites.filter(
+          (favorite) => favorite.id !== action.payload.id
+        );
+      }
+    );
+
     builder.addCase(addToViewed.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;

@@ -133,6 +133,20 @@ export const addToFavorites = createAsyncThunk(
   }
 );
 
+export const removeFromFavorites = createAsyncThunk(
+  "auth/removeFromFavorites",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosInstance.delete(
+        `/notices/favorites/remove/${id}`
+      );
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addToViewed = createAsyncThunk(
   "auth/addToViewed",
   async (id: string, { rejectWithValue }) => {
