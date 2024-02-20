@@ -1,12 +1,23 @@
 "use client";
 
-import { INotice } from "@/types";
+// import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/state/hooks";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "@/state/auth/authOperations";
+import {
+  selectIsLoggedIn,
+  selectUserFavorites,
+} from "@/state/auth/authSelectors";
+
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+
+import { INotice } from "@/types";
+
 import LearnMoreModal from "./learn-more-modal";
-import { selectIsLoggedIn } from "@/state/auth/authSelectors";
 import AttentionModal from "./attention-modal";
-import { useState } from "react";
-import { useAppSelector } from "@/state/hooks";
 
 interface NoticeProps {
   item: INotice;
@@ -23,16 +34,21 @@ const NoticesItem = ({ item }: NoticeProps) => {
     species,
     category,
     comment,
+    id,
   } = item;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const favorites = useAppSelector(selectUserFavorites);
 
-  const handleOpenModal = () => {
-    if (!isLoggedIn) {
-      setIsModalOpen(true);
-    }
+  const isFavorite = favorites.some((favorite) => favorite.id === id);
+
+  const onHandleAdd = () => {
+    dispatch(addToFavorites(id));
+  };
+
+  const onHandleDelete = () => {
+    dispatch(removeFromFavorites(id));
   };
 
   return (
@@ -83,17 +99,35 @@ const NoticesItem = ({ item }: NoticeProps) => {
       </p>
       <div className="flex gap-2.5">
         <LearnMoreModal item={item} />
-        {/* <Button
-          type="button"
-          className="group w-[46px] h-[46px]"
-          variant="outline"
-          onClick={handleOpenModal}
-        >
-          <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
-            <use xlinkHref="/sprite.svg#icon-heart"></use>
-          </svg>
-        </Button> */}
-        {!isLoggedIn && <AttentionModal />}
+        {isLoggedIn ? (
+          <>
+            {isFavorite ? (
+              <Button
+                type="button"
+                className="group w-[46px] h-[46px]"
+                variant="outline"
+                onClick={onHandleDelete}
+              >
+                <svg className="group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
+                  <use xlinkHref="/sprite.svg#icon-trash"></use>
+                </svg>
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                className="group w-[46px] h-[46px]"
+                variant="outline"
+                onClick={onHandleAdd}
+              >
+                <svg className="group-hover:stroke-muted-foreground group-hover:fill-muted-foreground w-[18px] h-[18px] stroke-[#F6B83D] fill-transparent transition-all duration-300">
+                  <use xlinkHref="/sprite.svg#icon-heart"></use>
+                </svg>
+              </Button>
+            )}
+          </>
+        ) : (
+          <AttentionModal />
+        )}
       </div>
     </div>
   );
