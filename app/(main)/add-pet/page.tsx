@@ -4,7 +4,7 @@ import AddPetImage from "./_components/add-pet-image";
 const AddPetPage = () => {
   return (
     <div className="container min-h-full flex flex-col lg:flex-row gap-2.5 md:gap-4 lg:gap-8 pb-5">
-      <section className="lg:flex-grow h-[280px] flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full sm:max-w-[335px] md:h-[302px] md:max-w-[704px] lg:h-full mx-auto">
+      <section className="lg:flex-grow h-[213px] md:h-[248px] flex-grow rounded-3xl md:rounded-[60px] bg-accent w-full sm:max-w-[335px] md:max-w-[704px] lg:h-full mx-auto">
         <AddPetImage />
       </section>
       <section className="lg:flex-grow flex items-center justify-center rounded-3xl md:rounded-[60px] bg-white w-full h-auto lg:h-full p-5 pt-7 md:pt-[40px] md:pb-[40px] md:px-[136px] lg:py-[60px] lg:px-[80px]">
