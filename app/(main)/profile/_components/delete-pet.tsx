@@ -6,6 +6,8 @@ import { deletePet } from "@/state/pets/petsOperations";
 
 import { Trash2 } from "lucide-react";
 
+import { toast } from "sonner";
+
 interface IDeletePetProps {
   id: string;
 }
@@ -16,7 +18,7 @@ const DeletePet = ({ id }: IDeletePetProps) => {
 
   const onDeleteHandle = async (id: string) => {
     await dispatch(deletePet(id));
-
+    toast.error("You have deleted pet", { duration: 2000 });
     router.refresh();
   };
 

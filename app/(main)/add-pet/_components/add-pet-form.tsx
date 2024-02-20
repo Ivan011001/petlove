@@ -14,6 +14,7 @@ import { addPetSchema } from "@/schemas";
 import { getOptions } from "@/data";
 import { capitalizeWord, validateBirthday } from "@/utils";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 export interface IAddPetFormValues {
   title: string;
@@ -60,6 +61,7 @@ const AddPetForm = () => {
     actions.resetForm();
 
     await dispatch(addPet(values));
+    toast.success("You have successfully added new pet!", { duration: 2000 });
     router.push("/profile");
   };
 

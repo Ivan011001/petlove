@@ -23,6 +23,8 @@ import {
 import { renderStars } from "@/utils/renderStart";
 import { cn } from "@/lib/utils";
 
+import { toast } from "sonner";
+
 interface NoticeProps {
   item: INotice;
   isFavorite: boolean;
@@ -48,12 +50,14 @@ const LearnMoreModal = ({ item, isFavorite }: NoticeProps) => {
     dispatch(addToViewed(id));
   };
 
-  const handleAddToFavorites = () => {
-    dispatch(addToFavorites(id));
+  const handleAddToFavorites = async () => {
+    await dispatch(addToFavorites(id));
+    toast.success("You have added notice to favorites", { duration: 2000 });
   };
 
-  const handleRemoveFromFavorite = () => {
-    dispatch(removeFromFavorites(id));
+  const handleRemoveFromFavorite = async () => {
+    await dispatch(removeFromFavorites(id));
+    toast.error("You have removed notice from favorites", { duration: 2000 });
   };
 
   const stars = renderStars(popularity);

@@ -11,7 +11,9 @@ import { loginSchema } from "@/schemas";
 import { cn } from "@/lib/utils";
 
 import { useAppDispatch } from "@/state/hooks";
-import { ISignin, ISignup, signin } from "@/state/auth/authOperations";
+import { ISignin, signin } from "@/state/auth/authOperations";
+
+import { toast } from "sonner";
 
 interface ILoginFormValues {
   email: string;
@@ -32,6 +34,7 @@ const LoginForm = () => {
   const onSubmit = async (values: ISignin) => {
     const { email, password } = values;
     await dispatch(signin({ email, password }));
+    toast.success("You were successfully logged in!", { duration: 2000 });
   };
 
   return (

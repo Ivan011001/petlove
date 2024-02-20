@@ -19,6 +19,8 @@ import { INotice } from "@/types";
 import LearnMoreModal from "./learn-more-modal";
 import AttentionModal from "./attention-modal";
 
+import { toast } from "sonner";
+
 interface NoticeProps {
   item: INotice;
 }
@@ -43,12 +45,14 @@ const NoticesItem = ({ item }: NoticeProps) => {
 
   const isFavorite = favorites.some((favorite) => favorite.id === id);
 
-  const onHandleAdd = () => {
-    dispatch(addToFavorites(id));
+  const onHandleAdd = async () => {
+    await dispatch(addToFavorites(id));
+    toast.success("You have added notice to favorites", { duration: 2000 });
   };
 
-  const onHandleDelete = () => {
-    dispatch(removeFromFavorites(id));
+  const onHandleDelete = async () => {
+    await dispatch(removeFromFavorites(id));
+    toast.error("You have removed notice from favorites", { duration: 2000 });
   };
 
   return (

@@ -12,6 +12,8 @@ import { registerSchema } from "@/schemas";
 import { useAppDispatch } from "@/state/hooks";
 import { ISignup, signup } from "@/state/auth/authOperations";
 
+import { toast } from "sonner";
+
 interface IRegistratiomFormValues {
   name: string;
   email: string;
@@ -46,6 +48,7 @@ const RegistrationForm = () => {
   const onSubmit = async (values: ISignup) => {
     const { name, email, password } = values;
     await dispatch(signup({ name, email, password }));
+    toast.success("You were successfully registrated!", { duration: 2000 });
   };
 
   return (
