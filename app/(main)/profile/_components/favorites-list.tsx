@@ -8,7 +8,7 @@ const FavoritesList = () => {
   const favorites = useAppSelector(selectUserFavorites);
   return (
     <div>
-      <ul className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-5 lg:justify-start lg:gap-6 lg:max-h-[900px] lg:overflow-scroll">
+      <ul className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-5 lg:justify-start lg:gap-6 lg:max-h-[850px] lg:overflow-scroll">
         {favorites?.map((favorite) => {
           return (
             <li key={favorite.id} className="sm:w-[335px] md:w-[342px]">

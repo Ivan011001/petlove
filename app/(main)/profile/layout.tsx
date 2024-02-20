@@ -7,7 +7,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <StoreProvider>
       <PrivateRoute>
-        <div className="pb-[80px] mx-auto">{children}</div>
+        <div className="pb-[80px] lg:pb-10 mx-auto">{children}</div>
       </PrivateRoute>
     </StoreProvider>
   );

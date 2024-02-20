@@ -1,15 +1,18 @@
 "use client";
 
+import Loader from "@/components/loader";
 import { uploadImage } from "@/state/auth/authOperations";
-import { selectUserImage } from "@/state/auth/authSelectors";
+import { selectIsLoading, selectUserImage } from "@/state/auth/authSelectors";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
+import { Oval } from "react-loader-spinner";
 
 const ProfileImage = () => {
   const imgURL = useAppSelector(selectUserImage);
   const [file, setFile] = useState<File | null>(null);
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile(e.target.files[0]);
@@ -25,7 +28,15 @@ const ProfileImage = () => {
   return (
     <div className="flex flex-col items-center gap-2 mb-[28px] md:mb-5">
       <div className="w-[94px] md:w-[110px] h-[94px] md:h-[110px] bg-yellow-50 rounded-full flex justify-center items-center">
-        {imgURL ? (
+        {isLoading ? (
+          <Oval
+            visible={true}
+            height="90"
+            width="90"
+            color="#F6B83D"
+            ariaLabel="oval-loading"
+          />
+        ) : imgURL ? (
           <Image
             src={imgURL}
             alt="dfdfd"
