@@ -98,7 +98,7 @@ const NoticesItem = ({ item }: NoticeProps) => {
         {comment}
       </p>
       <div className="flex gap-2.5">
-        <LearnMoreModal item={item} />
+        <LearnMoreModal item={item} isFavorite={isFavorite} />
         {isLoggedIn ? (
           <>
             {isFavorite ? (

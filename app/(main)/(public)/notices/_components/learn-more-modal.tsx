@@ -1,4 +1,16 @@
+import { useAppDispatch } from "@/state/hooks";
+import {
+  addToFavorites,
+  addToViewed,
+  removeFromFavorites,
+} from "@/state/auth/authOperations";
+
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+
+import { INotice } from "@/types";
+import { StarIcon } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -7,18 +19,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { addToFavorites, addToViewed } from "@/state/auth/authOperations";
-import { useAppDispatch } from "@/state/hooks";
-import { INotice } from "@/types";
+
 import { renderStars } from "@/utils/renderStart";
-import { StarIcon } from "lucide-react";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface NoticeProps {
   item: INotice;
+  isFavorite: boolean;
 }
 
-const LearnMoreModal = ({ item }: NoticeProps) => {
+const LearnMoreModal = ({ item, isFavorite }: NoticeProps) => {
   const {
     imgURL,
     title,
@@ -32,15 +42,22 @@ const LearnMoreModal = ({ item }: NoticeProps) => {
     id,
   } = item;
 
-  const stars = renderStars(popularity);
-
   const dispatch = useAppDispatch();
+
   const handleAddToViewed = () => {
     dispatch(addToViewed(id));
   };
+
   const handleAddToFavorites = () => {
     dispatch(addToFavorites(id));
   };
+
+  const handleRemoveFromFavorite = () => {
+    dispatch(removeFromFavorites(id));
+  };
+
+  const stars = renderStars(popularity);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -72,7 +89,11 @@ const LearnMoreModal = ({ item }: NoticeProps) => {
           </DialogTitle>
           <div className="flex items-center mt-2.5">
             {stars.map((star, i) => (
-              <StarIcon key={i} fill={star.fillColor} />
+              <StarIcon
+                key={i}
+                fill={star.fillColor}
+                className={cn("stroke-none")}
+              />
             ))}
             <span className="text-sm text-[#2B2B2A]">{popularity}</span>
           </div>
@@ -112,15 +133,27 @@ const LearnMoreModal = ({ item }: NoticeProps) => {
           </p>
         </div>
         <DialogFooter className="flex gap-2.5 items-center">
-          <Button
-            className="flex-grow group font-medium"
-            onClick={handleAddToFavorites}
-          >
-            Add to
-            <svg className="group-hover:fill-muted-foreground group-hover:stroke-muted-foreground w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
-              <use xlinkHref="/sprite.svg#icon-heart"></use>
-            </svg>
-          </Button>
+          {isFavorite ? (
+            <Button
+              className="group flex-grow group font-medium py-3.5 md:py-4"
+              onClick={handleRemoveFromFavorite}
+            >
+              Remove
+              <svg className="group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
+                <use xlinkHref="/sprite.svg#icon-trash"></use>
+              </svg>
+            </Button>
+          ) : (
+            <Button
+              className="group flex-grow group font-medium py-3.5 md:py-4"
+              onClick={handleAddToFavorites}
+            >
+              Add to
+              <svg className="group-hover:fill-accent group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
+                <use xlinkHref="/sprite.svg#icon-heart"></use>
+              </svg>
+            </Button>
+          )}
           <Button className="flex-grow py-4 font-medium" variant="outline">
             Contact
           </Button>
