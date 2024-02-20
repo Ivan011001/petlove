@@ -129,6 +129,10 @@ const authSlice = createSlice({
       state.imgURL = action.payload;
       state.isLoading = false;
     });
+    builder.addCase(uploadImage.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    });
 
     builder.addCase(uploadImage.rejected, (state, action) => {
       state.isLoading = false;
