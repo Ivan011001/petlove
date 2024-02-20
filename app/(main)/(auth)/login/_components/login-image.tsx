@@ -1,5 +1,5 @@
-import PetImage from "@/components/ui/pet-image";
-import RectangleImage from "@/components/ui/rectangle-image";
+import PetImage from "@/components/pet-image";
+import RectangleImage from "@/components/rectangle-image";
 import Image from "next/image";
 
 const LoginImage = () => {
