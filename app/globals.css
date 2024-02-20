@@ -74,6 +74,11 @@ input {
   border-radius: 30px;
 }
 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
 a {
   cursor: pointer;
 }

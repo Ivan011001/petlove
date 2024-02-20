@@ -39,6 +39,12 @@ const initialState: IAuthState = {
   viewed: [],
 };
 
+const handleRejected = (state: IAuthState, action: PayloadAction) => {
+  state.isLoggedIn = false;
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -48,6 +54,11 @@ const authSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(signup.pending, (state, action) => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
+      state.error = null;
+    });
     builder.addCase(signup.fulfilled, (state, action) => {
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
@@ -55,11 +66,9 @@ const authSlice = createSlice({
       state.error = null;
     });
 
-    builder.addCase(signup.rejected, (state, action) => {
-      state.isLoggedIn = false;
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder.addCase(signup.rejected, (state, action: any) =>
+      handleRejected(state, action)
+    );
 
     builder.addCase(signin.fulfilled, (state, action) => {
       state.token = action.payload.accessToken;
@@ -68,10 +77,13 @@ const authSlice = createSlice({
       state.error = null;
     });
 
-    builder.addCase(signin.rejected, (state, action) => {
+    builder.addCase(signin.rejected, (state, action: any) =>
+      handleRejected(state, action)
+    );
+    builder.addCase(signin.pending, (state, action) => {
+      state.isLoading = true;
       state.isLoggedIn = false;
-      state.isLoading = false;
-      state.error = action.payload;
+      state.error = null;
     });
 
     builder.addCase(updateUser.fulfilled, (state, action) => {
@@ -98,11 +110,9 @@ const authSlice = createSlice({
       state.error = null;
     });
 
-    builder.addCase(current.rejected, (state, action) => {
-      state.isLoggedIn = false;
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder.addCase(current.rejected, (state, action: any) =>
+      handleRejected(state, action)
+    );
 
     builder.addCase(logout.fulfilled, (state, action) => {
       state.token = "";
@@ -111,11 +121,9 @@ const authSlice = createSlice({
       state.error = null;
     });
 
-    builder.addCase(logout.rejected, (state, action) => {
-      state.isLoggedIn = false;
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder.addCase(logout.rejected, (state, action: any) =>
+      handleRejected(state, action)
+    );
 
     builder.addCase(uploadImage.fulfilled, (state, action) => {
       state.imgURL = action.payload;
