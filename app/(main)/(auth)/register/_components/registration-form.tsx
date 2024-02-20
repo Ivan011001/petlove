@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { registerSchema } from "@/schemas";
-import { useAppDispatch } from "@/state/hooks";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { ISignup, signup } from "@/state/auth/authOperations";
 
 import { toast } from "sonner";
+import { Oval } from "react-loader-spinner";
+import { selectIsLoading } from "@/state/auth/authSelectors";
 
 interface IRegistratiomFormValues {
   name: string;
@@ -25,6 +27,7 @@ const RegistrationForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
 
   const initialValues: IRegistratiomFormValues = {
     name: "",
@@ -179,9 +182,20 @@ const RegistrationForm = () => {
           <Button
             disabled={!isValid || !dirty}
             type="submit"
-            className="uppercase py-4 lg:py-4"
+            className="uppercase py-4 lg:py-4 flex gap-2"
           >
             Registration
+            {isLoading && (
+              <span>
+                <Oval
+                  visible={true}
+                  height="20"
+                  width="20"
+                  color="#F6B83D"
+                  ariaLabel="oval-loading"
+                />
+              </span>
+            )}
           </Button>
         </Form>
       )}

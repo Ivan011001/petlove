@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { Formik, Form, Field } from "formik";
 
 import { Button } from "@/components/ui/button";
@@ -10,10 +9,12 @@ import { loginSchema } from "@/schemas";
 
 import { cn } from "@/lib/utils";
 
-import { useAppDispatch } from "@/state/hooks";
+import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { ISignin, signin } from "@/state/auth/authOperations";
 
 import { toast } from "sonner";
+import { selectIsLoading } from "@/state/auth/authSelectors";
+import { Oval } from "react-loader-spinner";
 
 interface ILoginFormValues {
   email: string;
@@ -22,6 +23,7 @@ interface ILoginFormValues {
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(selectIsLoading);
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues: ILoginFormValues = { email: "", password: "" };
@@ -109,9 +111,20 @@ const LoginForm = () => {
           <Button
             disabled={!isValid || !dirty}
             type="submit"
-            className="uppercase py-4 lg:py-4"
+            className="uppercase py-4 lg:py-4 flex gap-2"
           >
-            Log In
+            Log In{" "}
+            {isLoading && (
+              <span>
+                <Oval
+                  visible={true}
+                  height="20"
+                  width="20"
+                  color="#F6B83D"
+                  ariaLabel="oval-loading"
+                />
+              </span>
+            )}
           </Button>
         </Form>
       )}
