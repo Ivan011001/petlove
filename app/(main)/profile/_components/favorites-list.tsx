@@ -22,10 +22,11 @@ const FavoritesList = () => {
           <p className="text-[#262626] text-sm md:text-base">
             Oops,{" "}
             <span className="text-[#F6B83D] text-sm font-bold">
-              looks like there aren't any furries
+              looks like there aren&apos;t any furries
             </span>{" "}
-            on our adorable page yet. Do not worry! View your pets on the "find
-            your favorite pet" page and add them to your favorites.
+            on our adorable page yet. Do not worry! View your pets on the
+            &quot;find your favorite pet&quot; page and add them to your
+            favorites.
           </p>
         </div>
       )}
