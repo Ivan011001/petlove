@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
         <LogOutButton />
       </section>
-      <section>
+      <section className="lg:w-[970px]">
         <ListSection />
       </section>
     </div>

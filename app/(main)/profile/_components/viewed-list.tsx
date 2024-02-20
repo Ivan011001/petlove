@@ -6,10 +6,10 @@ const ViewedList = () => {
   const viewed = useAppSelector(selectUserViewed);
 
   return (
-    <ul className="flex flex-col md:flex-row md:flex-wrap items-center justify-center md:gap-5 lg:justify-start lg:gap-6">
+    <ul className="flex flex-col gap-5 md:flex-row md:flex-wrap items-center justify-center md:gap-5 lg:justify-start lg:gap-6 lg:max-h-[900px] lg:overflow-scroll">
       {viewed?.map((viewed) => {
         return (
-          <li key={viewed.id} className="md:w-[342px] lg:w-[320px]">
+          <li key={viewed.id} className="sm:w-[335px] md:w-[342px]">
             <NoticesItem item={viewed} />
           </li>
         );
