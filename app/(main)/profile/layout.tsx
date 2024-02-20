@@ -6,7 +6,9 @@ import StoreProvider from "@/providers/store-provider";
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <StoreProvider>
-      <PrivateRoute>{children}</PrivateRoute>
+      <PrivateRoute>
+        <div className="pb-[80px] mx-auto">{children}</div>
+      </PrivateRoute>
     </StoreProvider>
   );
 };

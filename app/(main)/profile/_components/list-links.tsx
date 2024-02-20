@@ -8,11 +8,11 @@ interface LinkListProps {
 
 const ListLinks = ({ selected, onSelectedChange }: LinkListProps) => {
   return (
-    <ul className="flex items-center mb-5">
-      <li>
+    <ul className="flex items-center mb-5 lg:mb-8">
+      <li className="mr-2.5">
         <label
           className={cn(
-            "group p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex hover:bg-accent cursor-pointer transition-all duration-300",
+            "group p-3 md:py-3.5 h-[42px] md:h-12 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex hover:bg-accent cursor-pointer transition-all duration-300",
             selected === "favorites" && "bg-accent"
           )}
         >
@@ -38,7 +38,7 @@ const ListLinks = ({ selected, onSelectedChange }: LinkListProps) => {
       <li>
         <label
           className={cn(
-            "group p-3 md:py-3.5 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex hover:bg-accent cursor-pointer transition-all duration-300",
+            "group p-3 md:py-3.5 h-[42px] md:h-12 bg-white rounded-3xl justify-center items-center gap-2.5 inline-flex hover:bg-accent cursor-pointer transition-all duration-300",
             selected === "viewed" && "bg-accent"
           )}
         >

@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
         <LogoutModal variant="outline" />
       </section>
-      <section>
+      <section className="lg:w-[970px]">
         <ListSection />
       </section>
     </div>

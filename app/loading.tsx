@@ -6,18 +6,22 @@ import { Hearts } from "react-loader-spinner";
 
 const Loading = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <HeaderWrapper />
-      <div className="flex-grow flex justify-center items-center">
-        <Hearts
-          height="80"
-          width="80"
-          color="#F6B83D"
-          ariaLabel="hearts-loading"
-          visible={true}
-        />
-      </div>
-    </div>
+    <>
+      <Hearts
+        height="80"
+        width="80"
+        color="#F6B83D"
+        ariaLabel="hearts-loading"
+        visible={true}
+        wrapperStyle={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "60vh",
+          margin: "0 auto",
+        }}
+      />
+    </>
   );
 };
 
