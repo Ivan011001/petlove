@@ -19,7 +19,6 @@ const DeletePet = ({ id }: IDeletePetProps) => {
   const onDeleteHandle = async (id: string) => {
     await dispatch(deletePet(id));
     toast.error("You have deleted pet", { duration: 2000 });
-    router.refresh();
   };
 
   return (
