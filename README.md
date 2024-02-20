@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img width="980" alt="Home Page" src="public/home.png">
 
-## Getting Started
+# PetLove - Next.js & Nest.js app
 
-First, run the development server:
+Introducing Petlove, the revolutionary app tailored for pet enthusiasts like you! 
+Petlove is your ultimate companion in exploring everything about pets. From staying 
+updated with the latest pet news to exploring new features of animal world, 
+Petlove empowers you to delve into the world of pets effortlessly. Embrace the 
+innovative features of Petlove as you embark on a journey towards a more informed 
+and fulfilling pet ownership experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This app allows you to explore and find interesting information related to our small friends.
+Users can:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [x] create accounts
+- [x] select different pets
+- [x] read news about animals
+- [x] add pets to favorites
+- [x] remove pets from favorites
+- [x] upload their own pets 
+- [x] change profile settings
+- [x] filter pets by different prompts 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## References
 
-## Learn More
+Live page:
+[**PetLove**](https://petlove-seven.vercel.app/)
 
-To learn more about Next.js, take a look at the following resources:
+Project design:
+[**Layout**](https://www.figma.com/file/puMNfZVg4YI8UZoJ1QiLLi/Petl%F0%9F%92%9Bve?type=design&node-id=55838-750&mode=design&t=Xg1IwIcKebTl5xGs-0)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies used:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| `FrontEnd`        | `BackEnd`  | `General`  |
+| ----------------- | ---------- | ---------- |
+| Next.js           | Nest.js    | VSCode     |
+| TypeScript        | MongoDB    | GIT/GitHub |
+| Redux Toolkit     | Prisma     | Figma      |
+| Tailwind          | Cloudinary | Webpack    |
+| Formik            | Render     |            |
+| Shadcn            | Swagger    |            |
+| Pagination        |            |            |
+| Vercel            |            |            |
+| Axios             |            |            |
 
-## Deploy on Vercel
+## Installation & Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   `git clone https://github.com/Ivan011001/petlove/`
+2. Install the dependencies: `npm install`
+3. Run development mode: `npm run dev`
+4. Start local server: `npm start`
+5. Run production build: `npm build`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## API
+
+Our team also developed the backend this application relies on:
+[**PetLove BackEnd**](https://github.com/georgijbudik/petlove-backend)
+
+Endpoint documentation:
+[**PetLove API**](https://pet-management.onrender.com/api-docs#/)
+
+# Development team - :eyes:
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/georgijbudik)
+Georgii Budik | **Team Lead** | **Full Stack Developer**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Ivan011001)
+Ivan Nedokhodiuk | **Full Stack Developer**
+
+
+**A big thank you to our team for their contribution to this project!**
+:blue_heart::yellow_heart:
