@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 import UserBar from "./user-bar";
-import LogoutButton from "./logout-button";
+import LogoutModal from "@/components/logout-modal";
 
 interface IUserNavProps {
   light?: boolean;
@@ -14,7 +14,7 @@ const UserNav = ({ light }: IUserNavProps) => {
     <div className="flex items-center gap-2">
       <div className="hidden md:block">
         <div className={cn("", light && "hidden")}>
-          <LogoutButton />
+          <LogoutModal />
         </div>
       </div>
       <UserBar light={light} />

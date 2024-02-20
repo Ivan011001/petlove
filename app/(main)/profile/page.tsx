@@ -6,10 +6,10 @@ import { current } from "@/state/auth/authOperations";
 
 import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
-import LogOutButton from "./_components/log-out-button";
 import StoreProvider from "@/providers/store-provider";
 import ProfileImage from "./_components/profile-image";
 import ListSection from "./_components/list-section";
+import LogoutModal from "@/components/logout-modal";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ const ProfilePage = () => {
           <PetsList />
         </div>
 
-        <LogOutButton />
+        <LogoutModal variant="outline" />
       </section>
       <section>
         <ListSection />
