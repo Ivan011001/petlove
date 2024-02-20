@@ -21,8 +21,12 @@ const petsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(addPet.fulfilled, (state, action: PayloadAction<any>) => {
-      state.data = [action.payload, ...state.data];
+    builder.addCase(addPet.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(addPet.fulfilled, (state, action: PayloadAction<IPet>) => {
+      state.data.push(action.payload);
       state.isLoading = false;
       state.error = null;
     });
@@ -31,20 +35,31 @@ const petsSlice = createSlice({
       state.error = action.payload;
     });
 
-    // builder.addCase(getPets.fulfilled, (state, action: PayloadAction<any>) => {
-    //   state.data = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // });
-    // builder.addCase(getPets.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = action.payload;
-    // });
+    builder.addCase(getPets.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(
+      getPets.fulfilled,
+      (state, action: PayloadAction<IPet[]>) => {
+        state.data = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      }
+    );
+    builder.addCase(getPets.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
 
+    builder.addCase(deletePet.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    });
     builder.addCase(
       deletePet.fulfilled,
-      (state, action: PayloadAction<any>) => {
-        // state.data = state.data.filter((pet) => pet.id !== action.payload.id);
+      (state, action: PayloadAction<IPet>) => {
+        state.data = state.data.filter((pet) => pet.id !== action.payload.id);
         state.isLoading = false;
         state.error = null;
       }

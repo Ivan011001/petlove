@@ -33,7 +33,9 @@ export const deletePet = createAsyncThunk(
   "pets/delete",
   async (id: string, { rejectWithValue }) => {
     try {
-      await axiosInstance.delete(`/pets/${id}`);
+      const { data } = await axiosInstance.delete(`/pets/${id}`);
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
