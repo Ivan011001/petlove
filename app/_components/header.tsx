@@ -2,19 +2,21 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
+
 import { selectIsLoggedIn } from "@/state/auth/authSelectors";
 import { current } from "@/state/auth/authOperations";
 
 import Logo from "@/components/logo";
+import LogoutModal from "@/components/logout-modal";
 
 import Nav from "./nav";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import { cn } from "@/lib/utils";
 import UserNav from "./user-nav";
 import AuthNav from "./auth-nav";
-import LogoutButton from "./logout-button";
+
+import { cn } from "@/lib/utils";
 
 interface IHeaderProps {
   light?: boolean;
@@ -67,7 +69,7 @@ const Header = ({ light }: IHeaderProps) => {
 
                 {isLoggedIn ? (
                   <div className="md:hidden w-full">
-                    <LogoutButton />
+                    <LogoutModal mobile />
                   </div>
                 ) : (
                   <AuthNav />
