@@ -18,7 +18,7 @@ const FavoritesList = () => {
         })}
       </ul>
       {favorites.length === 0 && (
-        <div className="mt-[60px] flex text-center pb-[60px] md:pb-[100px] px-[155px] md:mt-[160px] lg:px-[135px]">
+        <div className="mt-[60px] flex text-center pb-[60px] md:pb-[100px] md:px-[155px] md:mt-[160px] lg:px-[135px]">
           <p className="text-[#262626] text-sm md:text-base md:leading-tight">
             Oops,{" "}
             <span className="text-[#F6B83D] text-sm md:text-base font-bold md:leading-tight">
