@@ -1,3 +1,4 @@
+import PetImage from "@/components/ui/pet-image";
 import RectangleImage from "@/components/ui/rectangle-image";
 import Image from "next/image";
 
@@ -11,9 +12,9 @@ const LoginImage = () => {
         width={332}
         height={414}
       />
-      <Image
+      <PetImage
         className="w-[335px] h-[280px] object-cover absolute md:w-[364px] md:h-[302px] md:left-[250px] md:object-cover lg:h-[660px] lg:w-[512px] lg:left-10 lg:bottom-0"
-        src="https://cdn.animaapp.com/projects/65abdef27b6be51fbc22722e/releases/65c65434e35bd7d6ae7069ea/img/telegram-cloud-document-2-5460905295997845524-1.png"
+        src="https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65d48505c9cf08a5f26f6dce/img/telegram-cloud-document-2-5460905295997845524-1.png"
         alt="Dog"
         width={335}
         height={280}
