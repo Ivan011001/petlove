@@ -1,6 +1,4 @@
-<img width="980" alt="Home Page" src="public/home.png">
-
-# PetLove - Next.js & Nest.js app
+# PetLove :heart_eyes_cat: - Next.js & Nest.js app
 
 Introducing Petlove, the revolutionary app tailored for pet enthusiasts like you! 
 Petlove is your ultimate companion in exploring everything about pets. From staying 
@@ -8,6 +6,10 @@ updated with the latest pet news to exploring new features of animal world,
 Petlove empowers you to delve into the world of pets effortlessly. Embrace the 
 innovative features of Petlove as you embark on a journey towards a more informed 
 and fulfilling pet ownership experience.
+
+
+https://github.com/Ivan011001/petlove/assets/126008836/2cf5b939-e4d7-4391-90f3-63a259ae3336
+
 
 ## About the project
 
@@ -65,11 +67,10 @@ Endpoint documentation:
 # Development team - :eyes:
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/georgijbudik)
-Georgii Budik | **Team Lead** | **Full Stack Developer**
+Georgii Budik | **Full Stack Developer**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Ivan011001)
 Ivan Nedokhodiuk | **Full Stack Developer**
 
 
-**A big thank you to our team for their contribution to this project!**
 :blue_heart::yellow_heart:
