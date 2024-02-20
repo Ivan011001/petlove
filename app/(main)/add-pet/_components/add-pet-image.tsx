@@ -1,3 +1,4 @@
+import PetImage from "@/components/ui/pet-image";
 import RectangleImage from "@/components/ui/rectangle-image";
 import Image from "next/image";
 
@@ -11,12 +12,12 @@ const AddPetImage = () => {
         width={332}
         height={414}
       />
-      <div
-        className="absolute bg-cover w-full h-full"
-        style={{
-          backgroundImage:
-            "url(https://cdn.animaapp.com/projects/65abdef27b6be51fbc22722e/releases/65c65434e35bd7d6ae7069ea/img/telegram-cloud-document-2-5460905295997845524-1.png)",
-        }}
+      <PetImage
+        className="absolute w-[297px] h-[248px] object-cover md:left-[204px] md:bottom-0 lg:h-[648px] lg:w-[512px] lg:left-10"
+        src="https://cdn.animaapp.com/projects/65c4c76946e5c0edf183ef9a/releases/65d484025eb23226784eda53/img/telegram-cloud-document-2-5460905295997845524-1.png"
+        alt="Dog"
+        width={297}
+        height={248}
       />
     </div>
   );
