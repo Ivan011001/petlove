@@ -1,9 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { useAppDispatch } from "@/state/hooks";
-import { current } from "@/state/auth/authOperations";
-
 import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
 import StoreProvider from "@/providers/store-provider";
@@ -12,12 +8,6 @@ import ListSection from "./_components/list-section";
 import LogoutModal from "@/components/logout-modal";
 
 const ProfilePage = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(current());
-  }, [dispatch]);
-
   return (
     <div className="container flex flex-col lg:flex-row gap-10">
       <section className="relative w-full lg:max-w-[520px] bg-white rounded-3xl md:rounded-[60px] pt-[54px] px-5 pb-10 md:p-[40px]">

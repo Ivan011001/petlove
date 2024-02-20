@@ -1,27 +1,13 @@
 "use client";
-
-import HeaderWrapper from "./_components/header-wrapper";
-
-import { Hearts } from "react-loader-spinner";
+import Loader from "@/components/loader";
 
 const Loading = () => {
   return (
-    <>
-      <Hearts
-        height="80"
-        width="80"
-        color="#F6B83D"
-        ariaLabel="hearts-loading"
-        visible={true}
-        wrapperStyle={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "60vh",
-          margin: "0 auto",
-        }}
-      />
-    </>
+    <div className="bg-white absolute z-100 w-screen h-screen">
+      <div className="flex h-full items-center justify-center">
+        <Loader />
+      </div>
+    </div>
   );
 };
 
