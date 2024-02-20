@@ -28,9 +28,10 @@ import { toast } from "sonner";
 interface NoticeProps {
   item: INotice;
   isFavorite: boolean;
+  isLoggedIn: boolean;
 }
 
-const LearnMoreModal = ({ item, isFavorite }: NoticeProps) => {
+const LearnMoreModal = ({ item, isFavorite, isLoggedIn }: NoticeProps) => {
   const {
     imgURL,
     title,
@@ -137,26 +138,30 @@ const LearnMoreModal = ({ item, isFavorite }: NoticeProps) => {
           </p>
         </div>
         <DialogFooter className="flex gap-2.5 items-center">
-          {isFavorite ? (
-            <Button
-              className="group flex-grow group font-medium py-3.5 md:py-4"
-              onClick={handleRemoveFromFavorite}
-            >
-              Remove
-              <svg className="group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
-                <use xlinkHref="/sprite.svg#icon-trash"></use>
-              </svg>
-            </Button>
-          ) : (
-            <Button
-              className="group flex-grow group font-medium py-3.5 md:py-4"
-              onClick={handleAddToFavorites}
-            >
-              Add to
-              <svg className="group-hover:fill-accent group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
-                <use xlinkHref="/sprite.svg#icon-heart"></use>
-              </svg>
-            </Button>
+          {isLoggedIn && (
+            <>
+              {isFavorite ? (
+                <Button
+                  className="group flex-grow group font-medium py-3.5 md:py-4"
+                  onClick={handleRemoveFromFavorite}
+                >
+                  Remove
+                  <svg className="group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
+                    <use xlinkHref="/sprite.svg#icon-trash"></use>
+                  </svg>
+                </Button>
+              ) : (
+                <Button
+                  className="group flex-grow group font-medium py-3.5 md:py-4"
+                  onClick={handleAddToFavorites}
+                >
+                  Add to
+                  <svg className="group-hover:fill-accent group-hover:stroke-accent w-[18px] h-[18px] stroke-[#FFFFFF] fill-transparent transition-all duration-300 ml-2">
+                    <use xlinkHref="/sprite.svg#icon-heart"></use>
+                  </svg>
+                </Button>
+              )}
+            </>
           )}
           <Button className="flex-grow py-4 font-medium" variant="outline">
             Contact

@@ -3,10 +3,11 @@ import { axiosInstance } from "@/services";
 import type { INews, IMetaPagination } from "@/types";
 
 import Title from "@/components/title";
+import ViewPagination from "../_components/page-pagination";
 
 import NewsList from "./_components/news-list";
 import NewsSearch from "./_components/news-search";
-import ViewPagination from "../_components/page-pagination";
+import NewsNotFound from "./_components/news-not-found";
 
 const getAllNews = async ({
   page,
@@ -49,14 +50,20 @@ const NewsPage = async ({
         <NewsSearch />
       </div>
 
-      <section>
-        <div className="mb-[44px] md:mb-[60px]">
-          <NewsList news={data} />
-        </div>
+      <section className="h-full">
+        {data.length === 0 ? (
+          <NewsNotFound />
+        ) : (
+          <section>
+            <div className="mb-[44px] md:mb-[60px]">
+              <NewsList news={data} />
+            </div>
 
-        <div className="flex justify-center items-center">
-          <ViewPagination meta={meta} />
-        </div>
+            <div className="flex justify-center items-center">
+              <ViewPagination meta={meta} />
+            </div>
+          </section>
+        )}
       </section>
     </div>
   );

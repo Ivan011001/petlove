@@ -7,6 +7,7 @@ import ViewPagination from "../_components/page-pagination";
 
 import NoticesFilters from "./_components/notices-filters";
 import NoticesList from "./_components/notices-list";
+import NoticesNotFound from "./_components/notices-not-found";
 
 interface INoticesSearchProp {
   page?: number;
@@ -95,10 +96,17 @@ const NoticesPage = async ({
       <section className="p-5 md:py-10 md:px-8 lg:px-10 rounded-3xl bg-[#FFF4DF] mb-10 md:mb-8 lg:mb-10">
         <NoticesFilters />
       </section>
-      <div className="mb-11 md:mb-[60px] mt-10 md:mt-8 lg:mt-8">
-        <NoticesList notices={data} />
-      </div>
-      <ViewPagination meta={meta} />
+
+      {data.length === 0 ? (
+        <NoticesNotFound />
+      ) : (
+        <>
+          <div className="mb-11 md:mb-[60px] mt-10 md:mt-8 lg:mt-8">
+            <NoticesList notices={data} />
+          </div>
+          <ViewPagination meta={meta} />
+        </>
+      )}
     </div>
   );
 };
