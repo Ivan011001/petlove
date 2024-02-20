@@ -31,7 +31,7 @@ const Header = ({ light }: IHeaderProps) => {
   return (
     <header
       className={cn(
-        "flex justify-between items-center py-[24px] md:py-[32px]",
+        "flex justify-between items-center py-[24px] md:py-[32px] lg:relative",
         !light && "container"
       )}
     >
@@ -77,7 +77,7 @@ const Header = ({ light }: IHeaderProps) => {
           </Sheet>
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:block lg:absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%]">
           <Nav light={light} />
         </div>
       </div>

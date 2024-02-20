@@ -6,6 +6,7 @@ import { selectUserImage, selectUserName } from "@/state/auth/authSelectors";
 import Link from "next/link";
 import Image from "next/image";
 
+import { shortenName } from "@/utils";
 import { cn } from "@/lib/utils";
 
 interface IUserBarProps {
@@ -45,7 +46,7 @@ const UserBar = ({ light }: IUserBarProps) => {
           light && "text-white"
         )}
       >
-        {userName}
+        {shortenName(userName)}
       </p>
     </div>
   );
