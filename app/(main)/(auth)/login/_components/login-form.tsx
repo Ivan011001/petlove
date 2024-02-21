@@ -34,9 +34,13 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (values: ISignin) => {
-    const { email, password } = values;
-    await dispatch(signin({ email, password }));
-    toast.success("You were successfully logged in!", { duration: 2000 });
+    try {
+      const { email, password } = values;
+      await dispatch(signin({ email, password })).unwrap();
+      toast.success("You were successfully logged in!");
+    } catch (error) {
+      toast.error("Error, please try again", { duration: 2000 });
+    }
   };
 
   return (

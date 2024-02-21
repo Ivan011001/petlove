@@ -49,9 +49,13 @@ const RegistrationForm = () => {
   };
 
   const onSubmit = async (values: ISignup) => {
-    const { name, email, password } = values;
-    await dispatch(signup({ name, email, password }));
-    toast.success("You were successfully registrated!", { duration: 2000 });
+    try {
+      const { name, email, password } = values;
+      await dispatch(signup({ name, email, password })).unwrap();
+      toast.success("You were successfully registrated!", { duration: 2000 });
+    } catch (error) {
+      toast.error("Error, please try again", { duration: 2000 });
+    }
   };
 
   return (
