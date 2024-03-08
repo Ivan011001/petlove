@@ -1,7 +1,3 @@
-import { axiosInstance } from "@/services";
-
-import type { INews, IMetaPagination } from "@/types";
-
 import Title from "@/components/title";
 import ViewPagination from "../_components/page-pagination";
 
@@ -9,26 +5,7 @@ import NewsList from "./_components/news-list";
 import NewsSearch from "./_components/news-search";
 import NewsNotFound from "./_components/news-not-found";
 
-const getAllNews = async ({
-  page,
-  search,
-}: {
-  page?: number;
-  search?: string;
-}): Promise<{
-  data: INews[];
-  meta: IMetaPagination;
-}> => {
-  try {
-    const response = await axiosInstance.get(
-      `/news?page=${page}&search=${search}`
-    );
-
-    return response.data;
-  } catch (error: any) {
-    return error.message;
-  }
-};
+import { getNews } from "@/data";
 
 const NewsPage = async ({
   searchParams,
@@ -41,7 +18,7 @@ const NewsPage = async ({
   const search = searchParams?.search || "";
   const page = Number(searchParams?.page) || 1;
 
-  const { data, meta } = await getAllNews({ page, search });
+  const { data, meta } = await getNews(page, search);
 
   return (
     <div className="h-full flex flex-col justify-between">
