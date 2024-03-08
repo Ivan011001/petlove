@@ -17,11 +17,11 @@ import {
 import type { IMetaPagination } from "@/types";
 
 interface IViewPaginationProps {
-  meta: IMetaPagination;
+  meta: IMetaPagination | null;
 }
 
 export const ViewPagination = ({ meta }: IViewPaginationProps) => {
-  const { prev: prevPage, currentPage, next: nextPage, lastPage } = meta;
+  const { prev: prevPage, currentPage, next: nextPage, lastPage } = meta!;
 
   const router = useRouter();
   const pathname = usePathname();

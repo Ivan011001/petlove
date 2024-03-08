@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+
 import Title from "@/components/title";
 import ViewPagination from "../_components/page-pagination";
 
@@ -6,19 +11,31 @@ import NewsSearch from "./_components/news-search";
 import NewsNotFound from "./_components/news-not-found";
 
 import { getNews } from "@/data";
+import { IMetaPagination, INews } from "@/types";
 
-const NewsPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    search?: string;
-    page?: string;
-  };
-}) => {
-  const search = searchParams?.search || "";
-  const page = Number(searchParams?.page) || 1;
+const NewsPage = () => {
+  const [isPending, setTransition] = useTransition();
 
-  const { data, meta } = await getNews(page, search);
+  const [news, setNews] = useState<INews[]>([]);
+  const [meta, setMeta] = useState<IMetaPagination | null>(null);
+
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get("search") || "";
+  const page = Number(searchParams.get("page")) || 1;
+
+  useEffect(() => {
+    const fetch = () => {
+      setTransition(async () => {
+        const { data: news, meta } = await getNews(page, search);
+
+        setNews(news);
+        setMeta(meta);
+      });
+    };
+
+    fetch();
+  }, [page, search]);
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -27,21 +44,23 @@ const NewsPage = async ({
         <NewsSearch />
       </div>
 
-      <section className="h-full">
-        {data.length === 0 ? (
-          <NewsNotFound />
-        ) : (
-          <section>
-            <div className="mb-[44px] md:mb-[60px]">
-              <NewsList news={data} />
-            </div>
+      {!isPending && (
+        <section className="h-full">
+          {news.length === 0 ? (
+            <NewsNotFound />
+          ) : (
+            <section>
+              <div className="mb-[44px] md:mb-[60px]">
+                <NewsList news={news} />
+              </div>
 
-            <div className="flex justify-center items-center">
-              <ViewPagination meta={meta} />
-            </div>
-          </section>
-        )}
-      </section>
+              <div className="flex justify-center items-center">
+                <ViewPagination meta={meta} />
+              </div>
+            </section>
+          )}
+        </section>
+      )}
     </div>
   );
 };

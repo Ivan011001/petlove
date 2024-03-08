@@ -13,8 +13,8 @@ export const getOptions = async (type: string) => {
 };
 
 export const getNews = async (
-  page?: number,
-  search?: string
+  page: number,
+  search: string
 ): Promise<{
   data: INews[];
   meta: IMetaPagination;
