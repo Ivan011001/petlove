@@ -1,6 +1,7 @@
-import { IMetaPagination, INotice } from "@/types";
+"use client";
 
-import { axiosInstance } from "@/services";
+import { useState, useEffect, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 
 import Title from "@/components/title";
 import ViewPagination from "../_components/page-pagination";
@@ -9,73 +10,51 @@ import NoticesFilters from "./_components/notices-filters";
 import NoticesList from "./_components/notices-list";
 import NoticesNotFound from "./_components/notices-not-found";
 
-interface INoticesSearchProp {
-  page?: number;
-  search?: string;
-  category?: string;
-  gender?: string;
-  type?: string;
-  location?: string;
-  popular?: boolean;
-  unpopular?: boolean;
-  cheap?: boolean;
-  expensive?: boolean;
-}
+import { getNotices } from "@/data";
+import { IMetaPagination, INotice } from "@/types";
 
-const getAllNotices = async ({
-  page,
-  search,
-  category,
-  gender,
-  type,
-  location,
-  popular,
-  unpopular,
-  cheap,
-  expensive,
-}: INoticesSearchProp): Promise<{
-  data: INotice[];
-  meta: IMetaPagination;
-}> => {
-  try {
-    const response = await axiosInstance(
-      `/notices?page=${page}&location=${location}&search=${search}&category=${category}&type=${type}&gender=${gender}&unpopular=${unpopular}&popular=${popular}&cheap=${cheap}&expensive=${expensive}`
-    );
+const NoticesPage = () => {
+  const [isPending, setTransition] = useTransition();
 
-    return response.data;
-  } catch (error: any) {
-    return error.message;
-  }
-};
+  const [notices, setNotices] = useState<INotice[]>([]);
+  const [meta, setMeta] = useState<IMetaPagination | null>(null);
 
-const NoticesPage = async ({
-  searchParams,
-}: {
-  searchParams?: {
-    page?: number;
-    search?: string;
-    category?: string;
-    gender?: string;
-    type?: string;
-    location?: string;
-    popular?: string;
-    unpopular?: string;
-    cheap?: string;
-    expensive?: string;
-  };
-}) => {
-  const page = Number(searchParams?.page) || 1;
-  const search = searchParams?.search || "";
-  const category = searchParams?.category || "";
-  const gender = searchParams?.gender || "all";
-  const type = searchParams?.type || "";
-  const location = searchParams?.location || "";
-  const popular = Boolean(searchParams?.popular) || false;
-  const unpopular = Boolean(searchParams?.unpopular) || false;
-  const cheap = Boolean(searchParams?.cheap) || false;
-  const expensive = Boolean(searchParams?.expensive) || false;
+  const searchParams = useSearchParams();
 
-  const { data, meta } = await getAllNotices({
+  const page = Number(searchParams.get("page")) || 1;
+  const search = searchParams.get("search") || "";
+  const category = searchParams.get("category") || "";
+  const gender = searchParams.get("gender") || "all";
+  const type = searchParams.get("type") || "";
+  const location = searchParams.get("location") || "";
+  const popular = Boolean(searchParams.get("popular")) || false;
+  const unpopular = Boolean(searchParams.get("unpopular")) || false;
+  const cheap = Boolean(searchParams.get("cheap")) || false;
+  const expensive = Boolean(searchParams.get("expensive")) || false;
+
+  useEffect(() => {
+    const fetch = async () => {
+      setTransition(async () => {
+        const { data, meta } = await getNotices({
+          page,
+          search,
+          category,
+          gender,
+          type,
+          location,
+          popular,
+          unpopular,
+          cheap,
+          expensive,
+        });
+
+        setNotices(data);
+        setMeta(meta);
+      });
+    };
+
+    fetch();
+  }, [
     page,
     search,
     category,
@@ -86,7 +65,7 @@ const NoticesPage = async ({
     unpopular,
     cheap,
     expensive,
-  });
+  ]);
 
   return (
     <div>
@@ -97,14 +76,18 @@ const NoticesPage = async ({
         <NoticesFilters />
       </section>
 
-      {data.length === 0 ? (
-        <NoticesNotFound />
-      ) : (
+      {!isPending && (
         <>
-          <div className="mb-11 md:mb-[60px] mt-10 md:mt-8 lg:mt-8">
-            <NoticesList notices={data} />
-          </div>
-          <ViewPagination meta={meta} />
+          {notices.length === 0 ? (
+            <NoticesNotFound />
+          ) : (
+            <>
+              <div className="mb-11 md:mb-[60px] mt-10 md:mt-8 lg:mt-8">
+                <NoticesList notices={notices} />
+              </div>
+              <ViewPagination meta={meta} />
+            </>
+          )}
         </>
       )}
     </div>
