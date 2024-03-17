@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import Header from "./_components/header";
 
-import HeaderWrapper from "./_components/header-wrapper";
 
 const NotFound = () => {
   return (
     <>
-      <HeaderWrapper />
+      <Header/>
       <main className="flex container pb-5">
         <div className="container bg-accent rounded-3xl flex flex-col justify-center items-center px-[33px]">
           <div className="flex flex-col justify-start items-center gap-5 ">
