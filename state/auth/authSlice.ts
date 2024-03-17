@@ -171,7 +171,12 @@ const authSlice = createSlice({
     builder.addCase(addToViewed.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      state.viewed.push(action.payload);
+      const isExisting = state.viewed.filter(
+        (pet) => pet.id === action.payload.id
+      );
+      if (!isExisting) {
+        state.viewed.push(action.payload);
+      }
     });
   },
 });

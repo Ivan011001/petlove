@@ -15,3 +15,5 @@ export const selectUserPhone = (state: RootState) => state.auth.phone;
 export const selectUserFavorites = (state: RootState) => state.auth.favorites;
 
 export const selectUserViewed = (state: RootState) => state.auth.viewed;
+
+export const selectUserToken = (state: RootState) => state.auth.token;
