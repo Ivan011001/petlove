@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
 
 import { Toaster } from "@/components/ui/sonner";
+import StoreProvider from "@/providers/store-provider";
 
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "700", "800"] });
 
@@ -45,7 +47,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={manrope.className}>
-        {children}
+        <StoreProvider>
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        </StoreProvider>
+
         <Toaster richColors />
       </body>
     </html>

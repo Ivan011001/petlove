@@ -1,7 +1,3 @@
-"use client";
-
-import StoreProvider from "@/providers/store-provider";
-
 import Image from "next/image";
 
 import { IPet } from "@/types";
@@ -40,9 +36,7 @@ const PetsItem = ({ pet }: IPetsItemProps) => {
 
   return (
     <div className="w-full relative p-4 pr-[46px] md:py-[22px] md:pl-4 md:pr-[27px] lg:py-[20px] lg:pl-[20px] lg:pr-[62px] border rounded-2xl md:rounded-[20px] border-neutral-800 border-opacity-10">
-      <StoreProvider>
-        <DeletePet imgURL={imgURL} id={id} />
-      </StoreProvider>
+      <DeletePet imgURL={imgURL} id={id} />
 
       <div className="flex lg:items-center gap-[14px] lg:gap-[25px]">
         {isAvatar ? (
