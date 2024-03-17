@@ -1,16 +1,10 @@
-"use client";
-
-import StoreProvider from "@/providers/store-provider";
-
 import Header from "../_components/header";
 
 export default function Home() {
   return (
     <>
       <section className="bg-amber-400 px-5 pb-[50px] lg:pb-8 rounded-3xl">
-        <StoreProvider>
-          <Header light />
-        </StoreProvider>
+        <Header light />
 
         <div className="flex flex-col lg:flex-row lg:items-end lg:gap-20">
           <h1 className="text-white max-w-80 md:max-w-full text-5xl md:text-7xl lg:text-8xl font-bold leading-10 mb-6 lg:mb-0">

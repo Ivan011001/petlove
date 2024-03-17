@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/state/hooks";
 

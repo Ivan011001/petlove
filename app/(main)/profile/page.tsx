@@ -1,8 +1,5 @@
-"use client";
-
 import ProfileForm from "./_components/profile-form";
 import PetsList from "./_components/pets-list";
-import StoreProvider from "@/providers/store-provider";
 import ProfileImage from "./_components/profile-image";
 import ListSection from "./_components/list-section";
 import LogoutModal from "@/components/logout-modal";
@@ -18,13 +15,9 @@ const ProfilePage = () => {
           </svg>
         </div>
 
-        <StoreProvider>
-          <ProfileImage />
-        </StoreProvider>
+        <ProfileImage />
         <div className="mb-10">
-          <StoreProvider>
-            <ProfileForm />
-          </StoreProvider>
+          <ProfileForm />
         </div>
         <div className="mb-5 lg:mb-10">
           <PetsList />

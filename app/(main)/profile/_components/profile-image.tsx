@@ -1,6 +1,4 @@
 "use client";
-
-import Loader from "@/components/loader";
 import { uploadImage } from "@/state/auth/authOperations";
 import { selectIsLoading, selectUserImage } from "@/state/auth/authSelectors";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";

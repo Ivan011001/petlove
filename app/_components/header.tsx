@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 
-import { selectIsLoggedIn } from "@/state/auth/authSelectors";
+import { selectIsLoggedIn, selectUserToken } from "@/state/auth/authSelectors";
 import { current } from "@/state/auth/authOperations";
 
 import Logo from "@/components/logo";
@@ -25,9 +25,12 @@ interface IHeaderProps {
 const Header = ({ light }: IHeaderProps) => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const token = useAppSelector(selectUserToken);
 
   useEffect(() => {
-    dispatch(current());
+    if (token) {
+      dispatch(current());
+    }
   }, [dispatch]);
 
   return (
@@ -64,7 +67,7 @@ const Header = ({ light }: IHeaderProps) => {
             <SheetContent>
               <div className="h-full flex flex-col justify-between">
                 <div className="flex flex-grow justify-center items-center">
-                  <Nav />
+                  <Nav isMobile />
                 </div>
 
                 {isLoggedIn ? (

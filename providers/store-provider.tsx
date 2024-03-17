@@ -1,3 +1,4 @@
+"use client";
 import { Provider } from "react-redux";
 import { store } from "@/state/store";
 import persistStore from "redux-persist/es/persistStore";

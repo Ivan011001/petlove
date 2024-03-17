@@ -1,14 +1,13 @@
-"use client";
-
-import StoreProvider from "@/providers/store-provider";
 import PublicRoute from "@/providers/public-route";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Register",
+};
+
 const RegisterLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <StoreProvider>
-      <PublicRoute>{children}</PublicRoute>
-    </StoreProvider>
-  );
+  return <PublicRoute>{children}</PublicRoute>;
 };
 
 export default RegisterLayout;
