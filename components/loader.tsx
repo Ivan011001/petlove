@@ -1,7 +1,6 @@
 import { Hearts } from "react-loader-spinner";
 
 const Loader = () => {
-  console.log("Loader");
   return (
     <Hearts
       height="80"
