@@ -9,7 +9,7 @@ import StoreProvider from "@/providers/store-provider";
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "700", "800"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://petlove-seven.vercel.app/"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: {
     template: "%s | Petlove",
     default: "Petlove",
